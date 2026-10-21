@@ -1,22 +1,11 @@
 SET SERVEROUTPUT ON;
 SET DEFINE OFF;
 
-PROMPT ===== 02 Tablas =====
 @@02_tablas.sql
-PROMPT ===== 03 Procedimientos =====
-@@03_procedimientos.sql
-PROMPT ===== 04 Disparadores =====
-@@04_disparadores.sql
-PROMPT ===== 05 Datos de prueba =====
-@@05_datos_prueba.sql
+@@03_funciones_procedimientos.sql
+@@04_paquetes.sql
+@@05_disparadores.sql
+@@06_vistas.sql
+@@07_datos_prueba.sql
 
-PROMPT ===== Objetos con errores (debe salir vacio) =====
 SELECT OBJECT_TYPE, OBJECT_NAME FROM USER_OBJECTS WHERE STATUS = 'INVALID';
-
-PROMPT ===== Cantidad de registros =====
-SELECT 'FACTURAS' AS TABLA, COUNT(*) AS REGISTROS FROM FACTURA_9255
-UNION ALL SELECT 'PRODUCTOS VENDIDOS', COUNT(*) FROM DETALLE_FACTURA_9255
-UNION ALL SELECT 'CLIENTES', COUNT(*) FROM CLIENTE_9255
-UNION ALL SELECT 'MOVIMIENTOS DE INVENTARIO', COUNT(*) FROM MOVIMIENTO_INVENTARIO_9255
-UNION ALL SELECT 'ENVIOS', COUNT(*) FROM ENVIO_9255
-UNION ALL SELECT 'NOTAS DE CREDITO', COUNT(*) FROM NOTA_CREDITO_9255;
