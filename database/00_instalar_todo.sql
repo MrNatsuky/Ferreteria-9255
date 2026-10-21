@@ -3,14 +3,12 @@ SET DEFINE OFF;
 
 PROMPT ===== 02 Tablas =====
 @@02_tablas.sql
-PROMPT ===== 03 Funciones y procedimientos =====
-@@03_funciones_procedimientos.sql
+PROMPT ===== 03 Procedimientos =====
+@@03_procedimientos.sql
 PROMPT ===== 04 Disparadores =====
 @@04_disparadores.sql
-PROMPT ===== 05 Vistas =====
-@@05_vistas.sql
-PROMPT ===== 06 Datos de prueba =====
-@@06_datos_prueba.sql
+PROMPT ===== 05 Datos de prueba =====
+@@05_datos_prueba.sql
 
 PROMPT ===== Objetos con errores (debe salir vacio) =====
 SELECT OBJECT_TYPE, OBJECT_NAME FROM USER_OBJECTS WHERE STATUS = 'INVALID';
