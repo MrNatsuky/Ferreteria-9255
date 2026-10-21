@@ -1,16 +1,3 @@
--- ================================================================================
--- FERRETERIA MR. NATSUKY'S - INSTALACION COMPLETA
--- Curso: Base de Datos, seccion A - Ing. Kalki Ramirez
--- Alumno: Brandon Emmanuel Paz Alvarez - Carne 3190-24-9255
---
--- PASOS:
---   1. Con la conexion de SYSTEM: ejecutar 01_crear_usuario.sql
---   2. Crear una conexion con el usuario c##FERRETERIA_9255 (contrasena Ferre9255)
---   3. Con esa conexion, abrir ESTE archivo y ejecutarlo con F5 (Ejecutar script).
---      Ejecuta en orden los archivos 02 al 06 de esta misma carpeta.
---   4. Con la conexion de SYSTEM: ejecutar 07_roles_seguridad.sql
--- ================================================================================
-
 SET SERVEROUTPUT ON;
 SET DEFINE OFF;
 
