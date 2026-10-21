@@ -1,0 +1,198 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4584628A-E7A5-9517-C874-B33A51882F4F" name="TIPO MOVIMIENTO 9255">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>C025EA32-862D-E4CD-52DF-152574087B3E</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID TIPO MOVIMIENTO" id="DC4D117E-87DC-15C8-A03B-36C8A96C72B2">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>90A19B1F-4CC6-2E06-65CF-0A944400F8CB</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<defaultValue>&quot;C##FERRETERIA_9255&quot;.&quot;SEC_TIPO_MOVIMIENTO_9255&quot;.&quot;NEXTVAL&quot;</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CODIGO" id="DEF5D0D7-CEEF-7A48-E6DA-3E0C25F7EF4F">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>9608531F-9889-D3C3-2FF9-C41E97B9E916</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NOMBRE" id="0389033B-30C1-8121-8C73-6BE29661BA9B">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>5496CA57-67D2-AC89-8061-461CA9538DB6</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60 BYTE</dataTypeSize>
+<ownDataTypeParameters>60 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="OPERACION" id="FAD4BEA4-00C9-5C89-DC04-56FB826EEB44">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>807E944D-4B24-F913-FB11-8A87B6362BFC</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<constraintName>CK_TIPO_MOVIMIENTO_OPERACION_9255</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<listOfValues>
+<valueDef value="&apos;+&apos;" description=""/>
+<valueDef value="&apos;-&apos;" description=""/>
+</listOfValues>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CREADO POR" id="35ABDD11-BE63-53D7-FE51-B888AF25DE2A">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>A1DEFC58-8EA2-B272-4033-F7375ED8C986</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<defaultValue>USER</defaultValue>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="FECHA CREACION" id="6D9DF040-88B2-7B65-5301-AA9B35219C7D">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>ADFC0945-9CCC-AB35-3EC0-727214AB1DD4</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<defaultValue>SYSDATE</defaultValue>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="MODIFICADO POR" id="4843721F-AEBA-5649-0F98-C8CE0F289E53">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>F65A0220-83EF-524F-1297-63C863C107D1</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="FECHA MODIFICACION" id="B6C1989A-9FDC-8424-255E-AE4147A62C44">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>5949D085-6F91-1F53-BF9D-7250A372D019</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ELIMINADO POR" id="30C5B783-C0C9-7528-7101-1393DBB3EE9D">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>A781C2A5-460A-625E-4017-7E1129435630</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="FECHA ELIMINACION" id="D126B9DE-504B-7988-BE7A-B23F00666FFD">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>94F2140E-9EA1-F952-95E2-D1B95312D810</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="6778BB02-3A43-2883-10F2-50E5375BCF3D" name="PK TIPO MOVIMIENTO 9255">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>8F3F5527-0A58-0BC3-4E43-F321AE14D24B</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>DC4D117E-87DC-15C8-A03B-36C8A96C72B2</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="EE2189D1-0928-F02F-8643-C599FB4679B5" name="UK TIPO MOVIMIENTO CODIGO 9255">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>5A26569A-5F4A-B0DB-9FFB-7FDF3D59A562</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<usedAttributes>
+<attributeRef>DEF5D0D7-CEEF-7A48-E6DA-3E0C25F7EF4F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

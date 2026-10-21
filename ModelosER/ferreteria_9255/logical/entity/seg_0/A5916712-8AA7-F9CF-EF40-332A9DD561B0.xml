@@ -1,0 +1,232 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A5916712-8AA7-F9CF-EF40-332A9DD561B0" name="ABONO CLIENTE 9255">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>BC0C38B5-545E-A08C-E6AF-EF03AD7A019F</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID ABONO" id="6406C001-8F01-2F2B-0B7D-AA9A160CF079">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>3E639869-5A03-14C9-C3A3-AEC045594FA7</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<defaultValue>&quot;C##FERRETERIA_9255&quot;.&quot;SEC_ABONO_CLIENTE_9255&quot;.&quot;NEXTVAL&quot;</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID CUENTA COBRAR" id="981B3FB1-1002-240F-CB35-01F86FADF2F2">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>03BA63D7-7A85-5ED9-C578-ED5DD34C9DC5</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<referedAttribute>06B0AE53-DAC5-0D95-051A-09772315D271</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID FORMA PAGO" id="918AB36B-ACCE-8934-C6A9-83C27DD7BAC6">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>04ACF9D2-21E1-50F9-920E-77027E90DB11</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<referedAttribute>5C8BFDC9-47D3-191C-F1A6-B6CE2D3FA3EC</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="FECHA ABONO" id="EC893320-4485-8482-49F6-8C97F4CF49E4">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>C4A506A4-3550-CE19-1644-0EF46895798A</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<defaultValue>SYSDATE</defaultValue>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="MONTO" id="A7BF334E-9B74-2FEB-CC47-EFDAE3B19C37">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>03BF86F2-E264-207D-0E41-042E41008BE2</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<constraintName>CK_ABONO_CLIENTE_MONTO_9255</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="MONTO &gt; 0"/>
+<implementationDef dbType="Oracle Database 21c" definition="MONTO &gt; 0"/>
+</checkConstraint>
+<ownDataTypeParameters>,12,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NUMERO REFERENCIA" id="65438FC2-478D-A63E-D601-A0DCF6E5D3DE">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>5EDDF67D-CAE2-6F1D-2C4B-A15C245F82FA</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 BYTE</dataTypeSize>
+<ownDataTypeParameters>40 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="BANCO" id="99B6750C-F45A-D1E9-10ED-89AE24EA08AB">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>6A59F1E8-7645-35D9-D346-0B80F7B1DB29</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60 BYTE</dataTypeSize>
+<ownDataTypeParameters>60 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CREADO POR" id="E0203B05-0016-48F6-0135-E168B1C5ED7C">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>AF2D6CC7-84E1-03F4-A733-AC82FA291DB4</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<defaultValue>USER</defaultValue>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="FECHA CREACION" id="3029FE4F-7B7F-4A32-7ECE-C808505B7623">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>4987C436-1656-BE95-6ABF-313AE0A88CC2</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<defaultValue>SYSDATE</defaultValue>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="MODIFICADO POR" id="B45F5FD0-E496-A128-5CC0-0DB040EAD720">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>369E5543-BC94-9AFC-0DF6-295911DD942F</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="FECHA MODIFICACION" id="71D1C2DC-28B5-5279-1C21-7FC2E2058D37">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>BBDC5DF0-859E-7178-19D1-70C7AD1B140A</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ELIMINADO POR" id="EBD914AB-EF91-5B71-4FB0-7A223A942001">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>907DBE1B-BEAE-6C15-EA58-996E79DBF478</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="FECHA ELIMINACION" id="915C0264-0C8F-0543-D6DD-C7ADC951875E">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>5113F13C-949F-C720-34BD-D0720DAC3935</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="244372C4-2C4B-5674-6351-991C5DF01121" name="PK ABONO CLIENTE 9255">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>13A84E37-9701-C3B8-C8E8-A78007A8EFD2</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>6406C001-8F01-2F2B-0B7D-AA9A160CF079</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

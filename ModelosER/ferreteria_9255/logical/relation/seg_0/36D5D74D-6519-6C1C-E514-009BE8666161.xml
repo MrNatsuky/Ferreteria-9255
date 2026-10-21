@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_VEHICULO_TIPO_PLACA_9255" directorySegmentName="seg_0" id="36D5D74D-6519-6C1C-E514-009BE8666161">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:08 UTC</createdTime>
+<generatorID>3C59FF1A-9BB9-C3B3-92CB-BBDF6C042B16</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<sourcePk>12280B2E-5EDA-1906-A491-55762E18553A</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>20B2F9E7-A533-7EFB-1D5E-6A4877B818FB</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>EE3E6D2A-ACA1-C44C-38B5-711B5FF5BBBC</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

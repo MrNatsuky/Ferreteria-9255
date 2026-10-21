@@ -1,0 +1,180 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4C15784F-4BA5-9DFF-EAE7-5065F9E69B8D" name="ROL 9255">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>ABD0FDD3-F75F-85A8-2917-6D4B01C107B9</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID ROL" id="BF70D5A5-71C0-690E-7BCC-48CCCC6E40FC">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>900ACF37-AA9C-870C-4546-F2DB81714B4E</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<defaultValue>&quot;C##FERRETERIA_9255&quot;.&quot;SEC_ROL_9255&quot;.&quot;NEXTVAL&quot;</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NOMBRE" id="5381BAC2-B2FF-42E2-56C4-53F8F5FD980F">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>95674EB0-2EDA-0D25-F0B6-52E9A5F9CC02</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 BYTE</dataTypeSize>
+<ownDataTypeParameters>40 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="DESCRIPCION" id="15CF8028-28C4-7C14-6D7B-5737BBFD52BE">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>0A2F0965-4BDF-69E9-5144-1BCAE6AFFB3A</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CREADO POR" id="EFB01832-606F-552D-EFD2-FFCC30489CD0">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>4D72935B-4C39-4EE3-D8F3-980D2013D76A</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<defaultValue>USER</defaultValue>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="FECHA CREACION" id="433644C3-315B-6A10-9475-359B81A67C49">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>71744590-86DA-650F-2697-AB9FC99977F2</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<defaultValue>SYSDATE</defaultValue>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="MODIFICADO POR" id="4B303E79-9EE1-FB53-3711-130239689475">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>9314FE69-1DF1-3C91-43E5-65FBA40FF674</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="FECHA MODIFICACION" id="A34993D6-420A-724B-9A7B-CAA6830E2982">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>31925DCB-4816-AC4A-A14C-479AFFBB7875</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ELIMINADO POR" id="7CAD98C4-32D2-7DAA-51FC-0F340B76E37D">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>C4B6973D-CDF2-68E3-9282-E3C2A41E78D7</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="FECHA ELIMINACION" id="F3DFDD14-638F-D61A-DC76-CFAB3F3F27B1">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>AB4B0720-FF3E-D57F-9098-ABA86FF43DAB</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="CA630381-5E30-7F99-C1AD-A1BD1E0A3965" name="PK ROL 9255">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>D9A45397-3099-553B-0CB9-F1FBDB73BD32</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>BF70D5A5-71C0-690E-7BCC-48CCCC6E40FC</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="1C470549-49B8-7A25-4885-0EF874BDE2C6" name="UK ROL NOMBRE 9255">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>D42ED449-433D-D2AD-7787-D312DB4A3CE7</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<usedAttributes>
+<attributeRef>5381BAC2-B2FF-42E2-56C4-53F8F5FD980F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

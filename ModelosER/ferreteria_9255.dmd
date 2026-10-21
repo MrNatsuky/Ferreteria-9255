@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="ferreteria_9255" id="A863E711-0E60-72E3-52A8-77D62661B35E" version="3.5">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:11:47 UTC</createdTime>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>A863E711-0E60-72E3-52A8-77D62661B35E</designId>
+</OSDM_Design>

@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_SUCURSAL_REGION_9255" directorySegmentName="seg_0" id="63F218F4-FF93-849D-A9BA-30112BB7C210">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:08 UTC</createdTime>
+<generatorID>939E2C45-8850-EEC2-080E-D8AE880F6518</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<sourcePk>47FFAAF9-50B6-DCB5-2408-46848E1DAD9D</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>D93B2E06-F8C3-A62E-2A64-B68855A2E0C5</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>4F83244E-74FE-A6F5-0DD5-E0642C578ED6</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

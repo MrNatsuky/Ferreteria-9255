@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_CUENTA_POR_COBRAR_FACTURA_9255" directorySegmentName="seg_0" id="FD8D29E1-7049-CB8A-FBF7-D87A254850FB">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>AA543305-CDC5-3F5B-C3D3-F38D2A839B57</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<sourcePk>C205F096-8F2E-6532-6169-42E9570F2169</sourcePk>
+<dominantRole>0B2D9C19-0E7E-1330-227E-CF6B7CB8DFC5</dominantRole>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>0B2D9C19-0E7E-1330-227E-CF6B7CB8DFC5</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>7C7C8E8E-474D-BDF9-AB39-3B4E8F29EAE8</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

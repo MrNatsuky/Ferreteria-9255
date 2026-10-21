@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_COMPRA_EMPLEADO_9255" directorySegmentName="seg_0" id="F38807AA-3FA5-1AF9-0970-0F61F86C2E83">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>D6DA8164-E0DF-2751-E5C8-A30B49B29FA8</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<sourcePk>7486F8E4-8679-7BA4-C6D8-47B950076E9E</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>0A62817A-1988-0D21-97C0-9E428E679931</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>BB541A5A-6EEE-853F-8BE7-BBB356394144</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

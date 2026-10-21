@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_NOTA_CREDITO_EMPLEADO_9255" directorySegmentName="seg_0" id="B43C9AA7-79C9-ECEB-866F-E19208BE35FE">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:08 UTC</createdTime>
+<generatorID>17A06897-6CF2-F363-0B56-96924F723BC5</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<sourcePk>7486F8E4-8679-7BA4-C6D8-47B950076E9E</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>0A62817A-1988-0D21-97C0-9E428E679931</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>19AE363C-0BC4-4351-A7C1-0DA773D5504A</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

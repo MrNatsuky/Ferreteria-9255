@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_TIPO_PLACA_PAIS_9255" directorySegmentName="seg_0" id="E23C956E-0575-B229-9F52-7E79D4E9E349">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:08 UTC</createdTime>
+<generatorID>2AC1CC25-D478-143D-7F47-B76A31F40BAE</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<sourcePk>307DCD5E-DA18-67F4-E34F-F93D6B95335D</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>36F13299-F6B9-8B17-F7D8-6126923B2AAB</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>20B2F9E7-A533-7EFB-1D5E-6A4877B818FB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_MOVIMIENTO_INVENTARIO_EMPLEADO_AUTORIZA_9255" directorySegmentName="seg_0" id="3E745888-487F-EFCB-12D2-898EDFF725B8">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:08 UTC</createdTime>
+<generatorID>DCC63959-0F02-4B78-C076-1858FFBD5C4E</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<sourcePk>7486F8E4-8679-7BA4-C6D8-47B950076E9E</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>0A62817A-1988-0D21-97C0-9E428E679931</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>70D4ABB6-C163-6D75-C3D3-CD480C7FC92D</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

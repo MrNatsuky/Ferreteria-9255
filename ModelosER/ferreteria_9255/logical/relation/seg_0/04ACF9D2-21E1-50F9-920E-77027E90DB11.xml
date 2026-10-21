@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_ABONO_CLIENTE_FORMA_PAGO_9255" directorySegmentName="seg_0" id="04ACF9D2-21E1-50F9-920E-77027E90DB11">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>76FA6DBB-BADA-BDF1-F98B-8E21E5D4E7EC</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<sourcePk>EF802E36-F074-3F85-F859-020E0B87C1A4</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>00A1D50E-7FB2-943A-D8E0-D9D158D1E685</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>A5916712-8AA7-F9CF-EF40-332A9DD561B0</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

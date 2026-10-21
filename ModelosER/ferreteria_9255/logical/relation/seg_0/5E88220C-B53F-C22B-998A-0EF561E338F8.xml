@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_ENVIO_FACTURA_9255" directorySegmentName="seg_0" id="5E88220C-B53F-C22B-998A-0EF561E338F8">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:08 UTC</createdTime>
+<generatorID>DD080914-32C5-1270-48EB-B4CA5B917DC7</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<sourcePk>C205F096-8F2E-6532-6169-42E9570F2169</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>0B2D9C19-0E7E-1330-227E-CF6B7CB8DFC5</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>C863A371-8869-6683-CA47-06A989367953</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

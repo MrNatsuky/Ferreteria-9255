@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_PAGO_PROVEEDOR_CUENTA_PAGAR_9255" directorySegmentName="seg_0" id="A762EFD2-36FD-8A4A-62E8-9093D1BCA71E">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:08 UTC</createdTime>
+<generatorID>3EFA4218-9F83-215B-5FBF-0720C7A5A4B6</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<sourcePk>F9F2F7EC-44FE-78B9-3333-2436116AB713</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>4D6ED79A-7758-5A53-FFEC-7DB52DBCAEC6</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>85844650-ADCE-295B-55ED-78F826CC2827</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

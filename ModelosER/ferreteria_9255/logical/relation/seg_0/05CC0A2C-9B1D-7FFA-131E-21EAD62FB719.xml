@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_PAGO_FACTURA_FORMA_PAGO_9255" directorySegmentName="seg_0" id="05CC0A2C-9B1D-7FFA-131E-21EAD62FB719">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:08 UTC</createdTime>
+<generatorID>C146945E-283E-A54D-805D-C5AF11466CC8</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<sourcePk>EF802E36-F074-3F85-F859-020E0B87C1A4</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>00A1D50E-7FB2-943A-D8E0-D9D158D1E685</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>21BD4F99-AC33-C070-602B-35738C33E624</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_INVENTARIO_PRODUCTO_9255" directorySegmentName="seg_0" id="240634EA-E2AD-F46E-6BE8-4CBC0B658BF2">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:08 UTC</createdTime>
+<generatorID>72BBCAEE-017D-2834-BC0B-A87FA0031CD0</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<sourcePk>A9FEE365-A34D-0984-DD66-612B645D8FF7</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>ED7D6501-3B32-07DE-5FCE-E40A1D34DADA</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E2B560CA-0EDB-FE62-BD0E-44A412E9A47B</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

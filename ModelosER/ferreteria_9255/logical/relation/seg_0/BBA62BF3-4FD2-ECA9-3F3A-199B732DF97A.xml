@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_RECLAMO_GARANTIA_DETALLE_FACTURA_9255" directorySegmentName="seg_0" id="BBA62BF3-4FD2-ECA9-3F3A-199B732DF97A">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:08 UTC</createdTime>
+<generatorID>1CED72B3-74F9-F557-EBF3-8DEAF9E891C5</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<sourcePk>493188D9-E5D9-2C6A-2CAB-3178E709C2B7</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>9CD3C6F5-CD57-7ECB-3520-9040502F5EB2</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>CD8D1EE1-BD6A-F053-8F9A-B34598CC9CF9</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

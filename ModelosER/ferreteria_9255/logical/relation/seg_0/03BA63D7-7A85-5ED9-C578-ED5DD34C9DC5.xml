@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_ABONO_CLIENTE_CUENTA_COBRAR_9255" directorySegmentName="seg_0" id="03BA63D7-7A85-5ED9-C578-ED5DD34C9DC5">
+<createdBy>Emmanuel</createdBy>
+<createdTime>2026-10-21 06:25:07 UTC</createdTime>
+<generatorID>F97218D0-9A11-6F71-DD49-1A1F49D38091</generatorID>
+<ownerDesignName>ferreteria_9255</ownerDesignName>
+<engineerTo>
+<item key="D5683E54-5DC0-7D63-EBBA-432290991327" value="true"/>
+</engineerTo>
+<sourcePk>49D69FC9-1503-057B-4C94-924AD7DD5857</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>7C7C8E8E-474D-BDF9-AB39-3B4E8F29EAE8</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>A5916712-8AA7-F9CF-EF40-332A9DD561B0</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
