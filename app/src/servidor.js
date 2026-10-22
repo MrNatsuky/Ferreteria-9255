@@ -11,6 +11,11 @@ const rutasMarcas = require('./rutas/marcas');
 const rutasFormasPago = require('./rutas/formas_pago');
 const rutasPaises = require('./rutas/paises');
 const rutasRegiones = require('./rutas/regiones');
+const rutasSucursales = require('./rutas/sucursales');
+const rutasProveedores = require('./rutas/proveedores');
+const rutasClientes = require('./rutas/clientes');
+const rutasProductos = require('./rutas/productos');
+const rutasFacturas = require('./rutas/facturas');
 const { requiereSesion, cargarMenu } = require('./middlewares/seguridad');
 
 const app = express();
@@ -38,6 +43,11 @@ app.use(rutasMarcas);
 app.use(rutasFormasPago);
 app.use(rutasPaises);
 app.use(rutasRegiones);
+app.use(rutasSucursales);
+app.use(rutasProveedores);
+app.use(rutasClientes);
+app.use(rutasProductos);
+app.use(rutasFacturas);
 
 app.use((req, res) => {
   res.status(404).render('mensaje', {

@@ -1,0 +1,105 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<% const accion = editar ? '/productos/' + editar.ID_PRODUCTO + '/editar' : '/productos'; %>
+<% const unidades = ['Unidad', 'Metro', 'Metro cubico', 'Galon', 'Saco', 'Caja', 'Libra']; %>
+
+<% if (editar || permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="<%= accion %>" class="formulario">
+    <h2><%= editar ? 'Editar producto' : 'Nuevo producto' %></h2>
+
+    <label>Codigo</label>
+    <input type="text" name="codigo" maxlength="20" required value="<%= editar ? editar.CODIGO : '' %>">
+
+    <label>Nombre</label>
+    <input type="text" name="nombre" maxlength="120" required value="<%= editar ? editar.NOMBRE : '' %>">
+
+    <label>Descripcion</label>
+    <input type="text" name="descripcion" maxlength="300" value="<%= editar ? editar.DESCRIPCION : '' %>">
+
+    <label>Categoria</label>
+    <select name="categoria" required>
+      <% categorias.forEach((c) => { %>
+        <option value="<%= c.ID_CATEGORIA %>" <%= editar && editar.ID_CATEGORIA === c.ID_CATEGORIA ? 'selected' : '' %>><%= c.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Marca</label>
+    <select name="marca" required>
+      <% marcas.forEach((m) => { %>
+        <option value="<%= m.ID_MARCA %>" <%= editar && editar.ID_MARCA === m.ID_MARCA ? 'selected' : '' %>><%= m.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Unidad de medida</label>
+    <select name="unidad" required>
+      <% unidades.forEach((u) => { %>
+        <option value="<%= u %>" <%= editar && editar.UNIDAD_MEDIDA === u ? 'selected' : '' %>><%= u %></option>
+      <% }) %>
+    </select>
+
+    <label>Precio de costo (Q)</label>
+    <input type="number" name="costo" step="0.01" min="0" required value="<%= editar ? editar.PRECIO_COSTO : '' %>">
+
+    <label>Precio de venta (Q)</label>
+    <input type="number" name="venta" step="0.01" min="0.01" required value="<%= editar ? editar.PRECIO_VENTA : '' %>">
+
+    <label>Existencia minima</label>
+    <input type="number" name="minima" step="0.01" min="0" required value="<%= editar ? editar.EXISTENCIA_MINIMA : '0' %>">
+
+    <label>Meses de garantia (0 = sin garantia)</label>
+    <input type="number" name="garantia" min="0" max="999" required value="<%= editar ? editar.MESES_GARANTIA : '0' %>">
+
+    <button type="submit">Guardar</button>
+    <% if (editar) { %>
+      <a href="/productos">Cancelar</a>
+    <% } %>
+  </form>
+<% } %>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Nombre</th>
+      <th>Categoria</th>
+      <th>Marca</th>
+      <th>Unidad</th>
+      <th>Costo</th>
+      <th>Venta</th>
+      <th>Minima</th>
+      <th>Garantia</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% productos.forEach((p) => { %>
+      <tr>
+        <td><%= p.CODIGO %></td>
+        <td><%= p.NOMBRE %></td>
+        <td><%= p.CATEGORIA %></td>
+        <td><%= p.MARCA %></td>
+        <td><%= p.UNIDAD_MEDIDA %></td>
+        <td>Q <%= p.PRECIO_COSTO %></td>
+        <td>Q <%= p.PRECIO_VENTA %></td>
+        <td><%= p.EXISTENCIA_MINIMA %></td>
+        <td><%= p.MESES_GARANTIA %> meses</td>
+        <td>
+          <% if (permiso.PUEDE_MODIFICAR === 'S') { %>
+            <a href="/productos?editar=<%= p.ID_PRODUCTO %>">Editar</a>
+          <% } %>
+          <% if (permiso.PUEDE_ELIMINAR === 'S') { %>
+            <form method="POST" action="/productos/<%= p.ID_PRODUCTO %>/eliminar" class="en-linea" onsubmit="return confirm('Eliminar este producto?')">
+              <button type="submit">Eliminar</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

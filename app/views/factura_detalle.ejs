@@ -1,0 +1,98 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<table class="tabla" style="max-width: 600px; margin-bottom: 20px;">
+  <tr><th>Factura</th><td><%= factura.NUMERO_FACTURA %></td></tr>
+  <tr><th>Fecha</th><td><%= factura.FECHA %></td></tr>
+  <tr><th>Sucursal</th><td><%= factura.SUCURSAL %></td></tr>
+  <tr><th>Vendedor</th><td><%= factura.VENDEDOR %></td></tr>
+  <tr><th>Cliente</th><td><%= factura.NIT %> - <%= factura.CLIENTE %></td></tr>
+  <tr><th>Tipo de venta</th><td><%= factura.TIPO_VENTA %></td></tr>
+  <tr><th>Entrega</th><td><%= factura.TIPO_ENTREGA %> <%= factura.DIRECCION_ENTREGA || '' %></td></tr>
+  <tr><th>Estado</th><td><strong><%= factura.ESTADO %></strong></td></tr>
+</table>
+
+<% if (factura.ESTADO === 'EN_PROCESO') { %>
+  <form method="POST" action="/facturas/<%= factura.ID_FACTURA %>/productos" class="formulario">
+    <h2>Agregar producto</h2>
+
+    <label>Producto</label>
+    <select name="producto" required>
+      <% productos.forEach((p) => { %>
+        <option value="<%= p.ID_PRODUCTO %>"><%= p.CODIGO %> - <%= p.NOMBRE %> (existencia: <%= p.EXISTENCIA %>)</option>
+      <% }) %>
+    </select>
+
+    <label>Cantidad</label>
+    <input type="number" name="cantidad" step="0.01" min="0.01" required>
+
+    <button type="submit">Agregar</button>
+  </form>
+<% } %>
+
+<table class="tabla" style="margin-bottom: 20px;">
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Subtotal</th>
+      <th>Garantia hasta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% detalle.forEach((d) => { %>
+      <tr>
+        <td><%= d.CODIGO %></td>
+        <td><%= d.NOMBRE %></td>
+        <td><%= d.CANTIDAD %></td>
+        <td><%= d.PRECIO_UNITARIO.toFixed(2) %></td>
+        <td><%= d.SUBTOTAL.toFixed(2) %></td>
+        <td><%= d.GARANTIA || 'Sin garantia' %></td>
+      </tr>
+    <% }) %>
+    <tr><th colspan="4">Subtotal</th><td colspan="2"><%= factura.MONEDA_CODIGO %> <%= factura.SUBTOTAL.toFixed(2) %></td></tr>
+    <tr><th colspan="4">Impuesto (<%= factura.PORCENTAJE_IMPUESTO %>%)</th><td colspan="2"><%= factura.MONEDA_CODIGO %> <%= factura.IMPUESTO.toFixed(2) %></td></tr>
+    <tr><th colspan="4">Total</th><td colspan="2"><strong><%= factura.MONEDA_CODIGO %> <%= factura.TOTAL.toFixed(2) %></strong></td></tr>
+  </tbody>
+</table>
+
+<% if (factura.ESTADO === 'EN_PROCESO' && detalle.length > 0) { %>
+  <form method="POST" action="/facturas/<%= factura.ID_FACTURA %>/emitir" class="formulario" onsubmit="return confirm('Emitir la factura? Ya no se podra modificar.')">
+    <h2>Emitir factura</h2>
+
+    <% if (factura.TIPO_VENTA === 'CONTADO') { %>
+      <label>Forma de pago</label>
+      <select name="forma">
+        <% formasPago.forEach((f) => { %>
+          <option value="<%= f.ID_FORMA_PAGO %>"><%= f.NOMBRE %></option>
+        <% }) %>
+      </select>
+
+      <label>Numero de referencia (tarjeta, transferencia o cheque)</label>
+      <input type="text" name="referencia" maxlength="40">
+
+      <label>Banco</label>
+      <input type="text" name="banco" maxlength="60">
+    <% } else { %>
+      <p>Venta al credito: se creara la cuenta por cobrar del cliente.</p>
+    <% } %>
+
+    <button type="submit">Emitir</button>
+  </form>
+<% } %>
+
+<% if (factura.ESTADO === 'EMITIDA') { %>
+  <p style="margin-bottom: 12px;">Factura emitida. No se puede modificar ni anular; cualquier correccion se hace con una nota de credito.</p>
+  <% pagos.forEach((p) => { %>
+    <p>Pago: <%= p.FORMA %> - <%= factura.MONEDA_CODIGO %> <%= p.MONTO.toFixed(2) %> <%= p.NUMERO_REFERENCIA ? '(Ref. ' + p.NUMERO_REFERENCIA + ')' : '' %></p>
+  <% }) %>
+<% } %>
+
+<p style="margin-top: 16px;"><a href="/facturas">Volver a facturas</a></p>
+
+<%- include('parciales/pie') %>

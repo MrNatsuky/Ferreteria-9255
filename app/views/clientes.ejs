@@ -1,0 +1,92 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<% const accion = editar ? '/clientes/' + editar.ID_CLIENTE + '/editar' : '/clientes'; %>
+
+<% if (editar || permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="<%= accion %>" class="formulario">
+    <h2><%= editar ? 'Editar cliente' : 'Nuevo cliente' %></h2>
+
+    <label>Region</label>
+    <select name="region" required>
+      <% regiones.forEach((r) => { %>
+        <option value="<%= r.ID_REGION %>" <%= editar && editar.ID_REGION === r.ID_REGION ? 'selected' : '' %>><%= r.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Tipo de cliente</label>
+    <select name="tipo">
+      <option value="INDIVIDUAL" <%= editar && editar.TIPO_CLIENTE === 'INDIVIDUAL' ? 'selected' : '' %>>Individual</option>
+      <option value="EMPRESA" <%= editar && editar.TIPO_CLIENTE === 'EMPRESA' ? 'selected' : '' %>>Empresa</option>
+    </select>
+
+    <label>NIT (CF si es consumidor final)</label>
+    <input type="text" name="nit" maxlength="20" required value="<%= editar ? editar.NIT : 'CF' %>">
+
+    <label>Nombre</label>
+    <input type="text" name="nombre" maxlength="150" required value="<%= editar ? editar.NOMBRE : '' %>">
+
+    <label>Telefono</label>
+    <input type="text" name="telefono" maxlength="20" value="<%= editar ? editar.TELEFONO : '' %>">
+
+    <label>Correo</label>
+    <input type="email" name="correo" maxlength="100" value="<%= editar ? editar.CORREO : '' %>">
+
+    <label>Direccion</label>
+    <input type="text" name="direccion" maxlength="200" value="<%= editar ? editar.DIRECCION : '' %>">
+
+    <label>Limite de credito (0 = solo contado)</label>
+    <input type="number" name="limite" step="0.01" min="0" required value="<%= editar ? editar.LIMITE_CREDITO : '0' %>">
+
+    <label>Dias de credito</label>
+    <input type="number" name="dias" min="0" max="999" required value="<%= editar ? editar.DIAS_CREDITO : '0' %>">
+
+    <button type="submit">Guardar</button>
+    <% if (editar) { %>
+      <a href="/clientes">Cancelar</a>
+    <% } %>
+  </form>
+<% } %>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NIT</th>
+      <th>Nombre</th>
+      <th>Tipo</th>
+      <th>Region</th>
+      <th>Telefono</th>
+      <th>Limite credito</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% clientes.forEach((c) => { %>
+      <tr>
+        <td><%= c.ID_CLIENTE %></td>
+        <td><%= c.NIT %></td>
+        <td><%= c.NOMBRE %></td>
+        <td><%= c.TIPO_CLIENTE %></td>
+        <td><%= c.REGION %></td>
+        <td><%= c.TELEFONO %></td>
+        <td><%= c.LIMITE_CREDITO %></td>
+        <td>
+          <% if (permiso.PUEDE_MODIFICAR === 'S') { %>
+            <a href="/clientes?editar=<%= c.ID_CLIENTE %>">Editar</a>
+          <% } %>
+          <% if (permiso.PUEDE_ELIMINAR === 'S') { %>
+            <form method="POST" action="/clientes/<%= c.ID_CLIENTE %>/eliminar" class="en-linea" onsubmit="return confirm('Eliminar este cliente?')">
+              <button type="submit">Eliminar</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

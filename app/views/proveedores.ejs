@@ -1,0 +1,86 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<% const accion = editar ? '/proveedores/' + editar.ID_PROVEEDOR + '/editar' : '/proveedores'; %>
+
+<% if (editar || permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="<%= accion %>" class="formulario">
+    <h2><%= editar ? 'Editar proveedor' : 'Nuevo proveedor' %></h2>
+
+    <label>Pais</label>
+    <select name="pais" required>
+      <% paises.forEach((p) => { %>
+        <option value="<%= p.ID_PAIS %>" <%= editar && editar.ID_PAIS === p.ID_PAIS ? 'selected' : '' %>><%= p.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>NIT</label>
+    <input type="text" name="nit" maxlength="20" required value="<%= editar ? editar.NIT : '' %>">
+
+    <label>Nombre o razon social</label>
+    <input type="text" name="nombre" maxlength="120" required value="<%= editar ? editar.NOMBRE : '' %>">
+
+    <label>Persona de contacto</label>
+    <input type="text" name="contacto" maxlength="100" value="<%= editar ? editar.NOMBRE_CONTACTO : '' %>">
+
+    <label>Telefono</label>
+    <input type="text" name="telefono" maxlength="20" value="<%= editar ? editar.TELEFONO : '' %>">
+
+    <label>Correo</label>
+    <input type="email" name="correo" maxlength="100" value="<%= editar ? editar.CORREO : '' %>">
+
+    <label>Direccion</label>
+    <input type="text" name="direccion" maxlength="200" value="<%= editar ? editar.DIRECCION : '' %>">
+
+    <label>Dias de credito</label>
+    <input type="number" name="dias" min="0" max="999" required value="<%= editar ? editar.DIAS_CREDITO : '0' %>">
+
+    <button type="submit">Guardar</button>
+    <% if (editar) { %>
+      <a href="/proveedores">Cancelar</a>
+    <% } %>
+  </form>
+<% } %>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Pais</th>
+      <th>NIT</th>
+      <th>Nombre</th>
+      <th>Contacto</th>
+      <th>Telefono</th>
+      <th>Dias credito</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% proveedores.forEach((p) => { %>
+      <tr>
+        <td><%= p.ID_PROVEEDOR %></td>
+        <td><%= p.PAIS %></td>
+        <td><%= p.NIT %></td>
+        <td><%= p.NOMBRE %></td>
+        <td><%= p.NOMBRE_CONTACTO %></td>
+        <td><%= p.TELEFONO %></td>
+        <td><%= p.DIAS_CREDITO %></td>
+        <td>
+          <% if (permiso.PUEDE_MODIFICAR === 'S') { %>
+            <a href="/proveedores?editar=<%= p.ID_PROVEEDOR %>">Editar</a>
+          <% } %>
+          <% if (permiso.PUEDE_ELIMINAR === 'S') { %>
+            <form method="POST" action="/proveedores/<%= p.ID_PROVEEDOR %>/eliminar" class="en-linea" onsubmit="return confirm('Eliminar este proveedor?')">
+              <button type="submit">Eliminar</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

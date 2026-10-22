@@ -1,0 +1,39 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<form method="POST" action="/facturas" class="formulario">
+  <h2>Datos de la factura</h2>
+
+  <label>Cliente</label>
+  <select name="cliente" required>
+    <% clientes.forEach((c) => { %>
+      <option value="<%= c.ID_CLIENTE %>"><%= c.NIT %> - <%= c.NOMBRE %></option>
+    <% }) %>
+  </select>
+
+  <label>Tipo de venta</label>
+  <select name="venta">
+    <option value="CONTADO">Contado</option>
+    <option value="CREDITO">Credito</option>
+  </select>
+
+  <label>Entrega</label>
+  <select name="entrega">
+    <option value="CLIENTE">El cliente se lleva la mercaderia</option>
+    <option value="EMPRESA">La empresa la entrega (envio)</option>
+  </select>
+
+  <label>Direccion de entrega (solo si la entrega la empresa)</label>
+  <input type="text" name="direccion" maxlength="200">
+
+  <label>Observaciones</label>
+  <input type="text" name="observaciones" maxlength="300">
+
+  <button type="submit">Crear factura</button>
+  <a href="/facturas">Cancelar</a>
+</form>
+
+<%- include('parciales/pie') %>

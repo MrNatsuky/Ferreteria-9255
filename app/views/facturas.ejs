@@ -1,0 +1,36 @@
+<%- include('parciales/encabezado') %>
+
+<% if (permiso.PUEDE_CREAR === 'S') { %>
+  <p style="margin-bottom: 16px;"><a href="/facturas/nueva" class="boton-secundario">Nueva factura</a></p>
+<% } %>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>Factura</th>
+      <th>Fecha</th>
+      <th>Sucursal</th>
+      <th>Cliente</th>
+      <th>Tipo</th>
+      <th>Total</th>
+      <th>Estado</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% facturas.forEach((f) => { %>
+      <tr>
+        <td><%= f.NUMERO_FACTURA %></td>
+        <td><%= f.FECHA %></td>
+        <td><%= f.SUCURSAL %></td>
+        <td><%= f.CLIENTE %></td>
+        <td><%= f.TIPO_VENTA %></td>
+        <td><%= f.MONEDA_CODIGO %> <%= f.TOTAL.toFixed(2) %></td>
+        <td><%= f.ESTADO %></td>
+        <td><a href="/facturas/<%= f.ID_FACTURA %>">Ver</a></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>
