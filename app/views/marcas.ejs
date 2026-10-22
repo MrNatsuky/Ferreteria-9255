@@ -1,0 +1,51 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<% const accion = editar ? '/marcas/' + editar.ID_MARCA + '/editar' : '/marcas'; %>
+
+<% if (editar || permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="<%= accion %>" class="formulario">
+    <h2><%= editar ? 'Editar marca' : 'Nueva marca' %></h2>
+
+    <label>Nombre</label>
+    <input type="text" name="nombre" maxlength="60" required value="<%= editar ? editar.NOMBRE : '' %>">
+
+    <button type="submit">Guardar</button>
+    <% if (editar) { %>
+      <a href="/marcas">Cancelar</a>
+    <% } %>
+  </form>
+<% } %>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% marcas.forEach((m) => { %>
+      <tr>
+        <td><%= m.ID_MARCA %></td>
+        <td><%= m.NOMBRE %></td>
+        <td>
+          <% if (permiso.PUEDE_MODIFICAR === 'S') { %>
+            <a href="/marcas?editar=<%= m.ID_MARCA %>">Editar</a>
+          <% } %>
+          <% if (permiso.PUEDE_ELIMINAR === 'S') { %>
+            <form method="POST" action="/marcas/<%= m.ID_MARCA %>/eliminar" class="en-linea" onsubmit="return confirm('Eliminar esta marca?')">
+              <button type="submit">Eliminar</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

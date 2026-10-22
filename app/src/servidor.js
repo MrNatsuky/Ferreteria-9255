@@ -6,6 +6,9 @@ const basedatos = require('./config/basedatos');
 const rutasAutenticacion = require('./rutas/autenticacion');
 const rutasInicio = require('./rutas/inicio');
 const rutasCategorias = require('./rutas/categorias');
+const rutasMotivosBaja = require('./rutas/motivos_baja');
+const rutasMarcas = require('./rutas/marcas');
+const rutasFormasPago = require('./rutas/formas_pago');
 const { requiereSesion, cargarMenu } = require('./middlewares/seguridad');
 
 const app = express();
@@ -28,6 +31,9 @@ app.use(requiereSesion, cargarMenu);
 
 app.use(rutasInicio);
 app.use(rutasCategorias);
+app.use(rutasMotivosBaja);
+app.use(rutasMarcas);
+app.use(rutasFormasPago);
 
 app.use((req, res) => {
   res.status(404).render('mensaje', {

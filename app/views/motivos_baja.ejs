@@ -1,0 +1,56 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<% const accion = editar ? '/motivos-baja/' + editar.ID_MOTIVO_BAJA + '/editar' : '/motivos-baja'; %>
+
+<% if (editar || permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="<%= accion %>" class="formulario">
+    <h2><%= editar ? 'Editar motivo' : 'Nueva motivo' %></h2>
+
+    <label>Nombre</label>
+    <input type="text" name="nombre" maxlength="60" required value="<%= editar ? editar.NOMBRE : '' %>">
+
+    <label>Descripcion</label>
+    <input type="text" name="descripcion" maxlength="200" value="<%= editar ? editar.DESCRIPCION : '' %>">
+
+    <button type="submit">Guardar</button>
+    <% if (editar) { %>
+      <a href="/motivos-baja">Cancelar</a>
+    <% } %>
+  </form>
+<% } %>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% motivos.forEach((c) => { %>
+      <tr>
+        <td><%= c.ID_MOTIVO_BAJA %></td>
+        <td><%= c.NOMBRE %></td>
+        <td><%= c.DESCRIPCION %></td>
+        <td>
+          <% if (permiso.PUEDE_MODIFICAR === 'S') { %>
+            <a href="/motivos-baja?editar=<%= c.ID_MOTIVO_BAJA %>">Editar</a>
+          <% } %>
+          <% if (permiso.PUEDE_ELIMINAR === 'S') { %>
+            <form method="POST" action="/motivos-baja/<%= c.ID_MOTIVO_BAJA %>/eliminar" class="en-linea" onsubmit="return confirm('Eliminar este motivo?')">
+              <button type="submit">Eliminar</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>
