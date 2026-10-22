@@ -1,19 +1,33 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
+const session = require('express-session');
 const basedatos = require('./config/basedatos');
+const rutasAutenticacion = require('./rutas/autenticacion');
 
 const app = express();
 const PUERTO = process.env.PUERTO || 3000;
 
-app.get('/prueba', async (req, res) => {
-  try {
-    const paises = await basedatos.consultar(
-      'SELECT ID_PAIS, NOMBRE, MONEDA_CODIGO, PORCENTAJE_IMPUESTO FROM PAIS_9255 ORDER BY ID_PAIS'
-    );
-    res.json({ conexion: 'correcta', paises });
-  } catch (error) {
-    res.status(500).json({ conexion: 'fallida', error: error.message });
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '..', 'views'));
+
+app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.urlencoded({ extended: true }));
+app.use(session({
+  secret: process.env.SESION_SECRETO,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 1000 * 60 * 60 * 2 },
+}));
+
+app.use(rutasAutenticacion);
+
+app.get('/', (req, res) => {
+  if (!req.session.usuario) {
+    return res.redirect('/login');
   }
+  const u = req.session.usuario;
+  res.send('Bienvenido ' + u.nombreCompleto + ' (' + u.rol + ') - <a href="/logout">Cerrar sesion</a>');
 });
 
 async function arrancar() {

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesion - Ferreteria Mr. Natsuky's</title>
+  <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body class="pagina-login">
+  <div class="login-fondo">
+    <div class="login-logo">◕_◕</div>
+    <h1 class="login-titulo">Iniciar sesion en Ferreteria Mr. Natsuky's</h1>
+
+    <% if (error) { %>
+      <div class="alerta-error"><%= error %></div>
+    <% } %>
+
+    <form class="login-caja" method="POST" action="/login">
+      <div class="campo">
+        <label for="usuario">Usuario</label>
+        <input type="text" id="usuario" name="usuario" value="<%= usuario %>" required autofocus>
+      </div>
+
+      <div class="campo">
+        <label for="contrasena">Contraseña</label>
+        <input type="password" id="contrasena" name="contrasena" required>
+      </div>
+
+      <button type="submit" class="boton-verde">Ingresar</button>
+    </form>
+
+    <div class="login-secundario">
+      Problemas para ingresar? Contacte al administrador del sistema.
+    </div>
+
+    <div class="login-pie">
+      Ferreteria Mr. Natsuky's &middot; Guatemala, El Salvador y Honduras<br>
+      Brandon Emmanuel Paz Alvarez &middot; 3190-24-9255 &middot; Base de Datos, UMG
+    </div>
+  </div>
+</body>
+</html>
