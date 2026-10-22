@@ -127,3 +127,150 @@ body.pagina-login {
   margin-bottom: 16px;
   font-size: 14px;
 }
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.menu-lateral {
+  width: 240px;
+  flex-shrink: 0;
+  background: #0d1117;
+  color: #e6edf3;
+  padding: 16px 0;
+}
+
+.menu-marca {
+  padding: 0 20px 16px;
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 1px solid #3d444d;
+  margin-bottom: 8px;
+}
+
+.menu-modulo {
+  padding: 12px 20px 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #9198a1;
+}
+
+.menu-enlace {
+  display: block;
+  padding: 7px 20px;
+  color: #e6edf3;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.menu-enlace:hover {
+  background: #151b23;
+}
+
+.menu-enlace.activo {
+  background: #1f6feb;
+  color: #ffffff;
+}
+
+.contenido {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.barra-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #d1d9e0;
+}
+
+.barra-superior h1 {
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.barra-usuario {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.boton-secundario {
+  padding: 6px 12px;
+  border: 1px solid #d1d9e0;
+  border-radius: 6px;
+  background: #f6f8fa;
+  color: #1f2937;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.boton-secundario:hover {
+  background: #eaeef2;
+}
+
+.pagina {
+  padding: 24px;
+}
+
+.saludo {
+  margin-bottom: 20px;
+  color: #4b5563;
+}
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.tarjeta {
+  background: #ffffff;
+  border: 1px solid #d1d9e0;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.tarjeta span {
+  display: block;
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.tarjeta strong {
+  font-size: 26px;
+  color: #1f3864;
+}
+
+.mensaje-caja {
+  background: #ffffff;
+  border: 1px solid #d1d9e0;
+  border-radius: 8px;
+  padding: 32px;
+  text-align: center;
+  max-width: 520px;
+}
+
+.mensaje-caja p {
+  margin-bottom: 20px;
+  color: #4b5563;
+}
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+  .menu-lateral {
+    width: 100%;
+  }
+}

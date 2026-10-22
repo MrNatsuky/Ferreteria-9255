@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= titulo %> - Ferreteria Mr. Natsuky's</title>
+  <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="menu-lateral">
+      <div class="menu-marca">Mr. Natsuky's</div>
+      <nav>
+        <% menu.forEach((grupo) => { %>
+          <div class="menu-modulo"><%= grupo.modulo %></div>
+          <% grupo.opciones.forEach((opcion) => { %>
+            <% const activo = opcion.RUTA === '/' ? rutaActual === '/' : rutaActual.startsWith(opcion.RUTA); %>
+            <a href="<%= opcion.RUTA %>" class="menu-enlace <%= activo ? 'activo' : '' %>"><%= opcion.NOMBRE %></a>
+          <% }) %>
+        <% }) %>
+      </nav>
+    </aside>
+    <div class="contenido">
+      <header class="barra-superior">
+        <h1><%= titulo %></h1>
+        <div class="barra-usuario">
+          <span><%= usuario.nombreCompleto %> &middot; <%= usuario.rol %></span>
+          <a href="/logout" class="boton-secundario">Cerrar sesión</a>
+        </div>
+      </header>
+      <main class="pagina">

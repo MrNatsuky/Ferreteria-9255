@@ -45,18 +45,20 @@ async function cargarMenu(req, res, next) {
 function requierePermiso(codigo, accion) {
   return (req, res, next) => {
     const permiso = req.session.permisos.find((p) => p.CODIGO === codigo);
+    let mensaje = null;
 
     if (!permiso) {
-      return res.status(403).send('No tiene acceso a esta opcion.');
+      mensaje = 'No tiene acceso a esta opción.';
+    } else if (accion === 'crear' && permiso.PUEDE_CREAR !== 'S') {
+      mensaje = 'No tiene permiso para crear registros en esta opción.';
+    } else if (accion === 'modificar' && permiso.PUEDE_MODIFICAR !== 'S') {
+      mensaje = 'No tiene permiso para modificar registros en esta opción.';
+    } else if (accion === 'eliminar' && permiso.PUEDE_ELIMINAR !== 'S') {
+      mensaje = 'No tiene permiso para eliminar registros en esta opción.';
     }
-    if (accion === 'crear' && permiso.PUEDE_CREAR !== 'S') {
-      return res.status(403).send('No tiene permiso para crear registros en esta opcion.');
-    }
-    if (accion === 'modificar' && permiso.PUEDE_MODIFICAR !== 'S') {
-      return res.status(403).send('No tiene permiso para modificar registros en esta opcion.');
-    }
-    if (accion === 'eliminar' && permiso.PUEDE_ELIMINAR !== 'S') {
-      return res.status(403).send('No tiene permiso para eliminar registros en esta opcion.');
+
+    if (mensaje) {
+      return res.status(403).render('mensaje', { titulo: 'Acceso denegado', mensaje });
     }
 
     res.locals.permiso = permiso;

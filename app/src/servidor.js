@@ -4,7 +4,8 @@ const express = require('express');
 const session = require('express-session');
 const basedatos = require('./config/basedatos');
 const rutasAutenticacion = require('./rutas/autenticacion');
-const { requiereSesion, cargarMenu, requierePermiso } = require('./middlewares/seguridad');
+const rutasInicio = require('./rutas/inicio');
+const { requiereSesion, cargarMenu } = require('./middlewares/seguridad');
 
 const app = express();
 const PUERTO = process.env.PUERTO || 3000;
@@ -22,20 +23,25 @@ app.use(session({
 }));
 
 app.use(rutasAutenticacion);
-
 app.use(requiereSesion, cargarMenu);
 
-app.get('/', (req, res) => {
-  res.json({ usuario: res.locals.usuario, menu: res.locals.menu });
+app.use(rutasInicio);
+
+app.use((req, res) => {
+  res.status(404).render('mensaje', {
+    titulo: 'En construcción',
+    mensaje: 'Esta opción todavía está en desarrollo.',
+  });
 });
 
-app.get('/usuarios', requierePermiso('USUARIOS'), (req, res) => {
-  res.send('Pantalla de usuarios (solo para quien tiene permiso). <a href="/">Inicio</a>');
-});
 app.use((error, req, res, next) => {
   console.error(error);
-  res.status(500).send('Ocurrio un error: ' + error.message);
+  res.status(500).render('mensaje', {
+    titulo: 'Error',
+    mensaje: 'Ocurrió un error: ' + error.message,
+  });
 });
+
 async function arrancar() {
   try {
     await basedatos.iniciar();

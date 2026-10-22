@@ -1,0 +1,28 @@
+<%- include('parciales/encabezado') %>
+
+<p class="saludo">Bienvenido, <%= usuario.nombreCompleto %>.</p>
+
+<div class="tarjetas">
+  <div class="tarjeta">
+    <span>Ventas del mes (quetzales)</span>
+    <strong>Q <%= indicadores.ventasMes %></strong>
+  </div>
+  <div class="tarjeta">
+    <span>Facturas del mes</span>
+    <strong><%= indicadores.facturasMes %></strong>
+  </div>
+  <div class="tarjeta">
+    <span>Clientes activos</span>
+    <strong><%= indicadores.clientes %></strong>
+  </div>
+  <div class="tarjeta">
+    <span>Productos bajo existencia mínima</span>
+    <strong><%= indicadores.bajoMinimo %></strong>
+  </div>
+  <div class="tarjeta">
+    <span>Envíos pendientes</span>
+    <strong><%= indicadores.enviosPendientes %></strong>
+  </div>
+</div>
+
+<%- include('parciales/pie') %>
