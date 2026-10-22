@@ -274,3 +274,62 @@ body.pagina-login {
     width: 100%;
   }
 }
+.formulario {
+  background: #ffffff;
+  border: 1px solid #d1d9e0;
+  padding: 16px;
+  margin-bottom: 20px;
+  max-width: 500px;
+}
+
+.formulario h2 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.formulario label {
+  display: block;
+  font-size: 14px;
+  margin: 8px 0 4px;
+}
+
+.formulario input,
+.formulario select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #cbd5e1;
+}
+
+.formulario button {
+  margin-top: 12px;
+  padding: 6px 14px;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+.tabla th,
+.tabla td {
+  border: 1px solid #d1d9e0;
+  padding: 6px 8px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.tabla th {
+  background: #f6f8fa;
+}
+
+.en-linea {
+  display: inline;
+}
+
+.alerta {
+  background: #fde8e8;
+  color: #9b1c1c;
+  padding: 10px;
+  margin-bottom: 16px;
+}

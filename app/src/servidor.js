@@ -5,6 +5,7 @@ const session = require('express-session');
 const basedatos = require('./config/basedatos');
 const rutasAutenticacion = require('./rutas/autenticacion');
 const rutasInicio = require('./rutas/inicio');
+const rutasCategorias = require('./rutas/categorias');
 const { requiereSesion, cargarMenu } = require('./middlewares/seguridad');
 
 const app = express();
@@ -26,6 +27,7 @@ app.use(rutasAutenticacion);
 app.use(requiereSesion, cargarMenu);
 
 app.use(rutasInicio);
+app.use(rutasCategorias);
 
 app.use((req, res) => {
   res.status(404).render('mensaje', {
