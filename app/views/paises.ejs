@@ -1,0 +1,77 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<% const accion = editar ? '/paises/' + editar.ID_PAIS + '/editar' : '/paises'; %>
+
+<% if (editar || permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="<%= accion %>" class="formulario">
+    <h2><%= editar ? 'Editar pais' : 'Nuevo pais' %></h2>
+
+    <label>Codigo ISO (2 letras)</label>
+    <input type="text" name="codigo" maxlength="2" required value="<%= editar ? editar.CODIGO_ISO : '' %>">
+
+    <label>Nombre</label>
+    <input type="text" name="nombre" maxlength="60" required value="<%= editar ? editar.NOMBRE : '' %>">
+
+    <label>Codigo de moneda (3 letras)</label>
+    <input type="text" name="moneda" maxlength="3" required value="<%= editar ? editar.MONEDA_CODIGO : '' %>">
+
+    <label>Simbolo de moneda</label>
+    <input type="text" name="simbolo" maxlength="5" required value="<%= editar ? editar.MONEDA_SIMBOLO : '' %>">
+
+    <label>Nombre del impuesto</label>
+    <input type="text" name="impuesto" maxlength="10" required value="<%= editar ? editar.NOMBRE_IMPUESTO : '' %>">
+
+    <label>Porcentaje de impuesto</label>
+    <input type="number" name="porcentaje" step="0.01" min="0" max="100" required value="<%= editar ? editar.PORCENTAJE_IMPUESTO : '' %>">
+
+    <label>Tipo de cambio a quetzales</label>
+    <input type="number" name="cambio" step="0.0001" min="0.0001" required value="<%= editar ? editar.TIPO_CAMBIO_QUETZAL : '1' %>">
+
+    <button type="submit">Guardar</button>
+    <% if (editar) { %>
+      <a href="/paises">Cancelar</a>
+    <% } %>
+  </form>
+<% } %>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>ISO</th>
+      <th>Nombre</th>
+      <th>Moneda</th>
+      <th>Impuesto</th>
+      <th>Tipo de cambio</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% paises.forEach((p) => { %>
+      <tr>
+        <td><%= p.ID_PAIS %></td>
+        <td><%= p.CODIGO_ISO %></td>
+        <td><%= p.NOMBRE %></td>
+        <td><%= p.MONEDA_CODIGO %> (<%= p.MONEDA_SIMBOLO %>)</td>
+        <td><%= p.NOMBRE_IMPUESTO %> <%= p.PORCENTAJE_IMPUESTO %>%</td>
+        <td><%= p.TIPO_CAMBIO_QUETZAL %></td>
+        <td>
+          <% if (permiso.PUEDE_MODIFICAR === 'S') { %>
+            <a href="/paises?editar=<%= p.ID_PAIS %>">Editar</a>
+          <% } %>
+          <% if (permiso.PUEDE_ELIMINAR === 'S') { %>
+            <form method="POST" action="/paises/<%= p.ID_PAIS %>/eliminar" class="en-linea" onsubmit="return confirm('Eliminar este pais?')">
+              <button type="submit">Eliminar</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

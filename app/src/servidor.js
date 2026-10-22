@@ -9,6 +9,8 @@ const rutasCategorias = require('./rutas/categorias');
 const rutasMotivosBaja = require('./rutas/motivos_baja');
 const rutasMarcas = require('./rutas/marcas');
 const rutasFormasPago = require('./rutas/formas_pago');
+const rutasPaises = require('./rutas/paises');
+const rutasRegiones = require('./rutas/regiones');
 const { requiereSesion, cargarMenu } = require('./middlewares/seguridad');
 
 const app = express();
@@ -34,6 +36,8 @@ app.use(rutasCategorias);
 app.use(rutasMotivosBaja);
 app.use(rutasMarcas);
 app.use(rutasFormasPago);
+app.use(rutasPaises);
+app.use(rutasRegiones);
 
 app.use((req, res) => {
   res.status(404).render('mensaje', {

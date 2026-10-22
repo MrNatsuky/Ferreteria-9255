@@ -1,0 +1,65 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<% const accion = editar ? '/regiones/' + editar.ID_REGION + '/editar' : '/regiones'; %>
+<% const nombresRegion = ['NORTE', 'SUR', 'ORIENTE', 'OCCIDENTE']; %>
+
+<% if (editar || permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="<%= accion %>" class="formulario">
+    <h2><%= editar ? 'Editar region' : 'Nueva region' %></h2>
+
+    <label>Pais</label>
+    <select name="pais" required>
+      <% paises.forEach((p) => { %>
+        <option value="<%= p.ID_PAIS %>" <%= editar && editar.ID_PAIS === p.ID_PAIS ? 'selected' : '' %>><%= p.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Region</label>
+    <select name="nombre" required>
+      <% nombresRegion.forEach((n) => { %>
+        <option value="<%= n %>" <%= editar && editar.NOMBRE === n ? 'selected' : '' %>><%= n %></option>
+      <% }) %>
+    </select>
+
+    <button type="submit">Guardar</button>
+    <% if (editar) { %>
+      <a href="/regiones">Cancelar</a>
+    <% } %>
+  </form>
+<% } %>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Pais</th>
+      <th>Region</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% regiones.forEach((r) => { %>
+      <tr>
+        <td><%= r.ID_REGION %></td>
+        <td><%= r.PAIS %></td>
+        <td><%= r.NOMBRE %></td>
+        <td>
+          <% if (permiso.PUEDE_MODIFICAR === 'S') { %>
+            <a href="/regiones?editar=<%= r.ID_REGION %>">Editar</a>
+          <% } %>
+          <% if (permiso.PUEDE_ELIMINAR === 'S') { %>
+            <form method="POST" action="/regiones/<%= r.ID_REGION %>/eliminar" class="en-linea" onsubmit="return confirm('Eliminar esta region?')">
+              <button type="submit">Eliminar</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>
