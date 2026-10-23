@@ -1,0 +1,86 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<% if (editar && permiso.PUEDE_MODIFICAR === 'S') { %>
+  <form method="POST" action="/usuarios/<%= editar.ID_USUARIO %>/editar" class="formulario">
+    <h2>Editar usuario <%= editar.NOMBRE_USUARIO %> (<%= editar.EMPLEADO %>)</h2>
+
+    <label>Rol</label>
+    <select name="rol" required>
+      <% roles.forEach((r) => { %>
+        <option value="<%= r.ID_ROL %>" <%= editar.ID_ROL === r.ID_ROL ? 'selected' : '' %>><%= r.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Nueva contrasena (dejar vacio para no cambiarla)</label>
+    <input type="password" name="contrasena" minlength="8">
+
+    <button type="submit">Guardar</button>
+    <a href="/usuarios">Cancelar</a>
+  </form>
+<% } else if (permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="/usuarios" class="formulario">
+    <h2>Nuevo usuario</h2>
+
+    <label>Empleado</label>
+    <select name="empleado" required>
+      <% empleados.forEach((e) => { %>
+        <option value="<%= e.ID_EMPLEADO %>"><%= e.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Nombre de usuario</label>
+    <input type="text" name="nombre" maxlength="50" required>
+
+    <label>Rol</label>
+    <select name="rol" required>
+      <% roles.forEach((r) => { %>
+        <option value="<%= r.ID_ROL %>"><%= r.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Contrasena (minimo 8 caracteres)</label>
+    <input type="password" name="contrasena" minlength="8" required>
+
+    <button type="submit">Crear usuario</button>
+  </form>
+<% } %>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Empleado</th>
+      <th>Sucursal</th>
+      <th>Rol</th>
+      <th>Ultimo acceso</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% usuarios.forEach((u) => { %>
+      <tr>
+        <td><%= u.NOMBRE_USUARIO %></td>
+        <td><%= u.EMPLEADO %></td>
+        <td><%= u.SUCURSAL %></td>
+        <td><%= u.ROL %></td>
+        <td><%= u.ULTIMO_ACCESO || 'Nunca' %></td>
+        <td>
+          <% if (permiso.PUEDE_MODIFICAR === 'S') { %>
+            <a href="/usuarios?editar=<%= u.ID_USUARIO %>">Editar</a>
+          <% } %>
+          <% if (permiso.PUEDE_ELIMINAR === 'S') { %>
+            <form method="POST" action="/usuarios/<%= u.ID_USUARIO %>/eliminar" class="en-linea" onsubmit="return confirm('Desactivar este usuario? Ya no podra iniciar sesion.')">
+              <button type="submit">Desactivar</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

@@ -29,6 +29,8 @@ const rutasNotasCredito = require('./rutas/notas_credito');
 const rutasGarantias = require('./rutas/garantias');
 const rutasBitacora = require('./rutas/bitacora');
 const rutasEmpleados = require('./rutas/empleados');
+const rutasUsuarios = require('./rutas/usuarios');
+const rutasRoles = require('./rutas/roles');
 const { requiereSesion, cargarMenu } = require('./middlewares/seguridad');
 
 const app = express();
@@ -74,6 +76,8 @@ app.use(rutasNotasCredito);
 app.use(rutasGarantias);
 app.use(rutasBitacora);
 app.use(rutasEmpleados);
+app.use(rutasUsuarios);
+app.use(rutasRoles);
 
 app.use((req, res) => {
   res.status(404).render('mensaje', {

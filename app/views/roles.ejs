@@ -1,0 +1,80 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+<% if (exito) { %>
+  <p style="margin-bottom: 12px;"><strong><%= exito %></strong></p>
+<% } %>
+
+<% if (permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="/roles" class="formulario">
+    <h2>Nuevo rol</h2>
+
+    <label>Nombre</label>
+    <input type="text" name="nombre" maxlength="40" required>
+
+    <label>Descripcion</label>
+    <input type="text" name="descripcion" maxlength="200">
+
+    <button type="submit">Crear rol</button>
+  </form>
+<% } %>
+
+<table class="tabla" style="margin-bottom: 20px;">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Rol</th>
+      <th>Descripcion</th>
+      <th>Usuarios</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% roles.forEach((r) => { %>
+      <tr>
+        <td><%= r.ID_ROL %></td>
+        <td><%= r.NOMBRE %></td>
+        <td><%= r.DESCRIPCION || '' %></td>
+        <td><%= r.USUARIOS %></td>
+        <td><a href="/roles?rol=<%= r.ID_ROL %>">Permisos</a></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<% if (rol) { %>
+  <form method="POST" action="/roles/<%= rol.ID_ROL %>/permisos">
+    <h2 style="margin-bottom: 10px;">Permisos del rol <%= rol.NOMBRE %></h2>
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th>Modulo</th>
+          <th>Opcion</th>
+          <th>Acceso</th>
+          <th>Crear</th>
+          <th>Modificar</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% opciones.forEach((o) => { %>
+          <tr>
+            <td><%= o.MODULO %></td>
+            <td><%= o.NOMBRE %></td>
+            <td><input type="checkbox" name="acceso_<%= o.ID_OPCION %>" <%= o.ACCESO === 'S' ? 'checked' : '' %>></td>
+            <td><input type="checkbox" name="crear_<%= o.ID_OPCION %>" <%= o.PUEDE_CREAR === 'S' ? 'checked' : '' %>></td>
+            <td><input type="checkbox" name="modificar_<%= o.ID_OPCION %>" <%= o.PUEDE_MODIFICAR === 'S' ? 'checked' : '' %>></td>
+            <td><input type="checkbox" name="eliminar_<%= o.ID_OPCION %>" <%= o.PUEDE_ELIMINAR === 'S' ? 'checked' : '' %>></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <% if (permiso.PUEDE_MODIFICAR === 'S') { %>
+      <p style="margin-top: 12px;"><button type="submit">Guardar permisos</button> <a href="/roles">Cancelar</a></p>
+    <% } %>
+  </form>
+<% } %>
+
+<%- include('parciales/pie') %>
