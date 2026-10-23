@@ -1,0 +1,94 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<% const accion = editar ? '/empleados/' + editar.ID_EMPLEADO + '/editar' : '/empleados'; %>
+
+<% if (editar || permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="<%= accion %>" class="formulario">
+    <h2><%= editar ? 'Editar empleado' : 'Nuevo empleado' %></h2>
+
+    <label>Sucursal</label>
+    <select name="sucursal" required>
+      <% sucursales.forEach((s) => { %>
+        <option value="<%= s.ID_SUCURSAL %>" <%= editar && editar.ID_SUCURSAL === s.ID_SUCURSAL ? 'selected' : '' %>><%= s.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Codigo</label>
+    <input type="text" name="codigo" maxlength="15" required value="<%= editar ? editar.CODIGO : '' %>">
+
+    <label>Nombres</label>
+    <input type="text" name="nombres" maxlength="80" required value="<%= editar ? editar.NOMBRES : '' %>">
+
+    <label>Apellidos</label>
+    <input type="text" name="apellidos" maxlength="80" required value="<%= editar ? editar.APELLIDOS : '' %>">
+
+    <label>Puesto</label>
+    <input type="text" name="puesto" maxlength="60" required value="<%= editar ? editar.PUESTO : '' %>">
+
+    <label>Documento de identidad</label>
+    <input type="text" name="documento" maxlength="25" required value="<%= editar ? editar.DOCUMENTO_IDENTIDAD : '' %>">
+
+    <label>Telefono</label>
+    <input type="text" name="telefono" maxlength="20" value="<%= editar ? editar.TELEFONO || '' : '' %>">
+
+    <label>Correo</label>
+    <input type="email" name="correo" maxlength="100" value="<%= editar ? editar.CORREO || '' : '' %>">
+
+    <label>Fecha de inicio</label>
+    <input type="date" name="inicio" required value="<%= editar ? editar.FECHA_INICIO : '' %>">
+
+    <label>Fecha de fin (si ya no trabaja)</label>
+    <input type="date" name="fin" value="<%= editar ? editar.FECHA_FIN || '' : '' %>">
+
+    <button type="submit">Guardar</button>
+    <% if (editar) { %>
+      <a href="/empleados">Cancelar</a>
+    <% } %>
+  </form>
+<% } %>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Nombre</th>
+      <th>Puesto</th>
+      <th>Sucursal</th>
+      <th>Documento</th>
+      <th>Telefono</th>
+      <th>Inicio</th>
+      <th>Fin</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% empleados.forEach((e) => { %>
+      <tr>
+        <td><%= e.CODIGO %></td>
+        <td><%= e.NOMBRES %> <%= e.APELLIDOS %></td>
+        <td><%= e.PUESTO %></td>
+        <td><%= e.SUCURSAL %></td>
+        <td><%= e.DOCUMENTO_IDENTIDAD %></td>
+        <td><%= e.TELEFONO || '' %></td>
+        <td><%= e.FECHA_INICIO %></td>
+        <td><%= e.FECHA_FIN || '' %></td>
+        <td>
+          <% if (permiso.PUEDE_MODIFICAR === 'S') { %>
+            <a href="/empleados?editar=<%= e.ID_EMPLEADO %>">Editar</a>
+          <% } %>
+          <% if (permiso.PUEDE_ELIMINAR === 'S') { %>
+            <form method="POST" action="/empleados/<%= e.ID_EMPLEADO %>/eliminar" class="en-linea" onsubmit="return confirm('Eliminar este empleado?')">
+              <button type="submit">Eliminar</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

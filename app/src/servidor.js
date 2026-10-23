@@ -24,6 +24,11 @@ const rutasTiposPlaca = require('./rutas/tipos_placa');
 const rutasVehiculos = require('./rutas/vehiculos');
 const rutasPilotos = require('./rutas/pilotos');
 const rutasEnvios = require('./rutas/envios');
+const rutasReportes = require('./rutas/reportes');
+const rutasNotasCredito = require('./rutas/notas_credito');
+const rutasGarantias = require('./rutas/garantias');
+const rutasBitacora = require('./rutas/bitacora');
+const rutasEmpleados = require('./rutas/empleados');
 const { requiereSesion, cargarMenu } = require('./middlewares/seguridad');
 
 const app = express();
@@ -64,6 +69,11 @@ app.use(rutasTiposPlaca);
 app.use(rutasVehiculos);
 app.use(rutasPilotos);
 app.use(rutasEnvios);
+app.use(rutasReportes);
+app.use(rutasNotasCredito);
+app.use(rutasGarantias);
+app.use(rutasBitacora);
+app.use(rutasEmpleados);
 
 app.use((req, res) => {
   res.status(404).render('mensaje', {

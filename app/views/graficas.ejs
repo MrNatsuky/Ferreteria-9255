@@ -1,0 +1,31 @@
+<%- include('parciales/encabezado') %>
+
+<% function barras(datos, decimales) { %>
+  <% const maximo = Math.max(...datos.valores, 1); %>
+  <% datos.etiquetas.forEach((etiqueta, i) => { %>
+    <div class="barra-fila">
+      <span class="barra-etiqueta"><%= etiqueta %></span>
+      <div class="barra-fondo">
+        <div class="barra" style="width: <%= (datos.valores[i] / maximo) * 100 %>%;"></div>
+      </div>
+      <span class="barra-valor"><%= datos.valores[i].toFixed(decimales) %></span>
+    </div>
+  <% }) %>
+<% } %>
+
+<div class="graficas">
+  <div class="tarjeta">
+    <h2>Ventas por mes (Q)</h2>
+    <% barras(ventasMes, 2) %>
+  </div>
+  <div class="tarjeta">
+    <h2>Ventas por pais (Q)</h2>
+    <% barras(ventasPais, 2) %>
+  </div>
+  <div class="tarjeta">
+    <h2>Top 5 productos mas vendidos (unidades)</h2>
+    <% barras(topProductos, 0) %>
+  </div>
+</div>
+
+<%- include('parciales/pie') %>

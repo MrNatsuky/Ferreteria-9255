@@ -1,0 +1,73 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<form method="GET" action="/notas-credito/nueva" class="formulario">
+  <h2>1. Seleccione la factura</h2>
+  <select name="factura" required>
+    <% facturas.forEach((f) => { %>
+      <option value="<%= f.ID_FACTURA %>" <%= factura && factura.ID_FACTURA === f.ID_FACTURA ? 'selected' : '' %>>
+        <%= f.FACTURA %> - <%= f.CLIENTE %> (total <%= f.MONEDA_CODIGO %> <%= f.TOTAL.toFixed(2) %>)
+      </option>
+    <% }) %>
+  </select>
+  <button type="submit">Seleccionar</button>
+</form>
+
+<% if (factura) { %>
+  <form method="POST" action="/notas-credito" class="formulario">
+    <h2>2. Datos de la nota para la factura <%= factura.FACTURA %></h2>
+    <p style="margin-bottom: 10px;">Disponible para acreditar: <strong><%= factura.MONEDA_CODIGO %> <%= factura.DISPONIBLE.toFixed(2) %></strong></p>
+
+    <input type="hidden" name="factura" value="<%= factura.ID_FACTURA %>">
+
+    <label>Tipo</label>
+    <select name="tipo">
+      <option value="DEVOLUCION">Devolucion de producto</option>
+      <option value="DESCUENTO">Descuento</option>
+      <option value="CORRECCION">Correccion</option>
+    </select>
+
+    <label>Motivo</label>
+    <input type="text" name="motivo" maxlength="300" required>
+
+    <label>Autorizado por</label>
+    <select name="autoriza" required>
+      <% gerentes.forEach((g) => { %>
+        <option value="<%= g.ID_EMPLEADO %>"><%= g.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <h2 style="margin-top: 12px;">Si es devolucion</h2>
+
+    <label>Producto</label>
+    <select name="linea">
+      <% lineas.forEach((l) => { %>
+        <option value="<%= l.ID_DETALLE_FACTURA %>">
+          <%= l.CODIGO %> - <%= l.NOMBRE %> (facturado <%= l.CANTIDAD %>, se puede devolver <%= l.DISPONIBLE %>, precio <%= l.PRECIO_UNITARIO.toFixed(2) %>)
+        </option>
+      <% }) %>
+    </select>
+
+    <label>Cantidad a devolver</label>
+    <input type="number" name="cantidad" step="0.01" min="0">
+
+    <label>Estado del producto</label>
+    <select name="estado">
+      <option value="BUENO">Bueno (regresa al inventario)</option>
+      <option value="DANADO">Danado (no regresa al inventario)</option>
+    </select>
+
+    <h2 style="margin-top: 12px;">Si es descuento o correccion</h2>
+
+    <label>Monto</label>
+    <input type="number" name="monto" step="0.01" min="0">
+
+    <button type="submit" onclick="return confirm('Emitir la nota de credito?')">Emitir nota de credito</button>
+    <a href="/notas-credito">Cancelar</a>
+  </form>
+<% } %>
+
+<%- include('parciales/pie') %>

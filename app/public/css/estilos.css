@@ -333,3 +333,40 @@ body.pagina-login {
   padding: 10px;
   margin-bottom: 16px;
 }
+.graficas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 16px;
+}
+
+.graficas h2 {
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+.barra-fila {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.barra-etiqueta {
+  width: 150px;
+}
+
+.barra-fondo {
+  flex: 1;
+  background: #eaeef2;
+  height: 18px;
+}
+
+.barra {
+  background: #1f6feb;
+  height: 18px;
+}
+
+.barra-valor {
+  width: 80px;
+  text-align: right;
+}

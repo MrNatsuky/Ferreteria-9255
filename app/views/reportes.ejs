@@ -1,0 +1,57 @@
+<%- include('parciales/encabezado') %>
+
+<form method="GET" action="/reportes" class="formulario">
+  <h2>Filtros</h2>
+
+  <label>Reporte</label>
+  <select name="tipo">
+    <% Object.keys(reportes).forEach((clave) => { %>
+      <option value="<%= clave %>" <%= clave === tipo ? 'selected' : '' %>><%= reportes[clave].titulo %></option>
+    <% }) %>
+  </select>
+
+  <% if (reporte.filtraPais) { %>
+    <label>Pais</label>
+    <select name="pais">
+      <option value="">Todos</option>
+      <% paises.forEach((p) => { %>
+        <option value="<%= p.NOMBRE %>" <%= p.NOMBRE === pais ? 'selected' : '' %>><%= p.NOMBRE %></option>
+      <% }) %>
+    </select>
+  <% } %>
+
+  <label>Orden</label>
+  <select name="orden">
+    <option value="DESC" <%= orden === 'DESC' ? 'selected' : '' %>>Mayor a menor</option>
+    <option value="ASC" <%= orden === 'ASC' ? 'selected' : '' %>>Menor a mayor</option>
+  </select>
+
+  <button type="submit">Ver reporte</button>
+</form>
+
+<div class="en-linea" style="margin-bottom: 16px;">
+  <strong><%= reporte.titulo %><%= pais ? ' - ' + pais : '' %></strong>
+  <a href="/reportes/excel?<%= consulta %>" class="boton-secundario">Exportar a Excel</a>
+  <a href="/reportes/pdf?<%= consulta %>" class="boton-secundario">Exportar a PDF</a>
+</div>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <% reporte.columnas.forEach((c) => { %>
+        <th><%= c.titulo %></th>
+      <% }) %>
+    </tr>
+  </thead>
+  <tbody>
+    <% filas.forEach((f) => { %>
+      <tr>
+        <% reporte.columnas.forEach((c) => { %>
+          <td><%= valorTexto(f, c) %></td>
+        <% }) %>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

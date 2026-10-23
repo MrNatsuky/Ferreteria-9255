@@ -1,0 +1,38 @@
+<%- include('parciales/encabezado') %>
+
+<% if (permiso.PUEDE_CREAR === 'S') { %>
+  <p style="margin-bottom: 16px;"><a href="/notas-credito/nueva" class="boton-secundario">Nueva nota de credito</a></p>
+<% } %>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>Nota</th>
+      <th>Fecha</th>
+      <th>Factura</th>
+      <th>Cliente</th>
+      <th>Tipo</th>
+      <th>Motivo</th>
+      <th>Monto</th>
+      <th>Autorizo</th>
+      <th>Usuario</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% notas.forEach((n) => { %>
+      <tr>
+        <td><%= n.NOTA %></td>
+        <td><%= n.FECHA %></td>
+        <td><a href="/facturas/<%= n.ID_FACTURA %>"><%= n.FACTURA %></a></td>
+        <td><%= n.CLIENTE %></td>
+        <td><%= n.TIPO %></td>
+        <td><%= n.MOTIVO %></td>
+        <td><%= n.MONEDA_CODIGO %> <%= n.MONTO.toFixed(2) %></td>
+        <td><%= n.AUTORIZA %></td>
+        <td><%= n.CREADO_POR %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

@@ -1,0 +1,90 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<% if (resolver && permiso.PUEDE_MODIFICAR === 'S') { %>
+  <form method="POST" action="/garantias/<%= resolver.ID_RECLAMO %>/resolver" class="formulario">
+    <h2>Resolver reclamo <%= resolver.ID_RECLAMO %>: <%= resolver.PRODUCTO %></h2>
+    <p style="margin-bottom: 10px;">Falla: <%= resolver.DESCRIPCION_FALLA %></p>
+
+    <label>Resultado</label>
+    <select name="estado">
+      <option value="REPARADO">Reparado</option>
+      <option value="REEMPLAZADO">Reemplazado (sale 1 unidad del inventario)</option>
+      <option value="RECHAZADO">Rechazado</option>
+    </select>
+
+    <label>Resolucion</label>
+    <input type="text" name="resolucion" maxlength="300" required>
+
+    <button type="submit">Guardar</button>
+    <a href="/garantias">Cancelar</a>
+  </form>
+<% } else if (permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="/garantias" class="formulario">
+    <h2>Nuevo reclamo de garantia</h2>
+
+    <label>Producto (solo con garantia vigente)</label>
+    <select name="linea" required>
+      <% productos.forEach((p) => { %>
+        <option value="<%= p.ID_DETALLE_FACTURA %>"><%= p.FACTURA %> - <%= p.CLIENTE %> - <%= p.PRODUCTO %> (hasta <%= p.GARANTIA_HASTA %>)</option>
+      <% }) %>
+    </select>
+
+    <label>Descripcion de la falla</label>
+    <input type="text" name="falla" maxlength="300" required>
+
+    <button type="submit">Registrar reclamo</button>
+  </form>
+<% } %>
+
+<form method="GET" action="/garantias" class="en-linea" style="margin-bottom: 16px;">
+  <label>Estado</label>
+  <select name="estado">
+    <% ['PENDIENTE', 'REPARADO', 'REEMPLAZADO', 'RECHAZADO'].forEach((e) => { %>
+      <option value="<%= e %>" <%= estado === e ? 'selected' : '' %>><%= e %></option>
+    <% }) %>
+  </select>
+  <button type="submit">Ver</button>
+</form>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Fecha</th>
+      <th>Factura</th>
+      <th>Cliente</th>
+      <th>Producto</th>
+      <th>Garantia hasta</th>
+      <th>Falla</th>
+      <th>Resolucion</th>
+      <th>Usuario</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% reclamos.forEach((r) => { %>
+      <tr>
+        <td><%= r.ID_RECLAMO %></td>
+        <td><%= r.FECHA %></td>
+        <td><a href="/facturas/<%= r.ID_FACTURA %>"><%= r.FACTURA %></a></td>
+        <td><%= r.CLIENTE %></td>
+        <td><%= r.PRODUCTO %></td>
+        <td><%= r.GARANTIA_HASTA %></td>
+        <td><%= r.DESCRIPCION_FALLA %></td>
+        <td><%= r.RESOLUCION ? r.RESOLUCION + ' (' + r.FECHA_RESOLUCION + ')' : '' %></td>
+        <td><%= r.CREADO_POR %></td>
+        <td>
+          <% if (r.ESTADO === 'PENDIENTE' && permiso.PUEDE_MODIFICAR === 'S') { %>
+            <a href="/garantias?resolver=<%= r.ID_RECLAMO %>">Resolver</a>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

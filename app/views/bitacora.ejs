@@ -1,0 +1,53 @@
+<%- include('parciales/encabezado') %>
+
+<form method="GET" action="/bitacora" class="formulario" style="max-width: none;">
+  <h2>Filtros</h2>
+  <div class="en-linea">
+    <select name="tabla">
+      <option value="">Todas las tablas</option>
+      <% tablas.forEach((t) => { %>
+        <option value="<%= t.TABLA_AFECTADA %>" <%= filtros.tabla === t.TABLA_AFECTADA ? 'selected' : '' %>><%= t.TABLA_AFECTADA %></option>
+      <% }) %>
+    </select>
+    <select name="accion">
+      <option value="">Todas las acciones</option>
+      <% ['ALTA', 'CAMBIO', 'BAJA', 'INICIO_SESION', 'CIERRE_SESION'].forEach((a) => { %>
+        <option value="<%= a %>" <%= filtros.accion === a ? 'selected' : '' %>><%= a %></option>
+      <% }) %>
+    </select>
+    <input type="text" name="usuario" placeholder="Usuario" value="<%= filtros.usuario %>">
+    <input type="date" name="desde" value="<%= filtros.desde %>">
+    <input type="date" name="hasta" value="<%= filtros.hasta %>">
+    <button type="submit">Filtrar</button>
+    <a href="/bitacora">Limpiar</a>
+  </div>
+</form>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Fecha</th>
+      <th>Tabla</th>
+      <th>Accion</th>
+      <th>ID registro</th>
+      <th>Usuario</th>
+      <th>Detalle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% registros.forEach((r) => { %>
+      <tr>
+        <td><%= r.ID_BITACORA %></td>
+        <td><%= r.FECHA %></td>
+        <td><%= r.TABLA_AFECTADA %></td>
+        <td><%= r.ACCION %></td>
+        <td><%= r.ID_REGISTRO || '' %></td>
+        <td><%= r.USUARIO %></td>
+        <td><%= r.DETALLE || '' %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>
