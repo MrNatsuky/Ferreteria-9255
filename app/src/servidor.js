@@ -19,6 +19,7 @@ const rutasFacturas = require('./rutas/facturas');
 const rutasInventario = require('./rutas/inventario');
 const rutasCuentasCobrar = require('./rutas/cuentas_cobrar');
 const rutasCompras = require('./rutas/compras');
+const rutasCuentasPagar = require('./rutas/cuentas_pagar');
 const { requiereSesion, cargarMenu } = require('./middlewares/seguridad');
 
 const app = express();
@@ -54,6 +55,7 @@ app.use(rutasFacturas);
 app.use(rutasInventario);
 app.use(rutasCuentasCobrar);
 app.use(rutasCompras);
+app.use(rutasCuentasPagar);
 
 app.use((req, res) => {
   res.status(404).render('mensaje', {

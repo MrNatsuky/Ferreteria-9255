@@ -1,0 +1,69 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<table class="tabla" style="max-width: 600px; margin-bottom: 20px;">
+  <tr><th>Compra</th><td><a href="/compras/<%= cuenta.ID_COMPRA %>"><%= cuenta.ID_COMPRA %></a> (<%= cuenta.NUMERO_DOCUMENTO || '' %>)</td></tr>
+  <tr><th>Proveedor</th><td><%= cuenta.NIT %> - <%= cuenta.PROVEEDOR %></td></tr>
+  <tr><th>Emision</th><td><%= cuenta.EMISION %></td></tr>
+  <tr><th>Vencimiento</th><td><%= cuenta.VENCIMIENTO %></td></tr>
+  <tr><th>Monto</th><td><%= cuenta.MONEDA_CODIGO %> <%= cuenta.MONTO_TOTAL.toFixed(2) %></td></tr>
+  <tr><th>Saldo</th><td><strong><%= cuenta.MONEDA_CODIGO %> <%= cuenta.SALDO.toFixed(2) %></strong></td></tr>
+  <tr><th>Estado</th><td><%= cuenta.ESTADO %></td></tr>
+</table>
+
+<% if (cuenta.ESTADO === 'PENDIENTE' && permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="/cuentas-pagar/<%= cuenta.ID_CUENTA_PAGAR %>/pagos" class="formulario">
+    <h2>Registrar pago al proveedor</h2>
+
+    <label>Monto</label>
+    <input type="number" name="monto" step="0.01" min="0.01" required>
+
+    <label>Forma de pago</label>
+    <select name="forma">
+      <% formasPago.forEach((f) => { %>
+        <option value="<%= f.ID_FORMA_PAGO %>"><%= f.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Numero de referencia (tarjeta, transferencia o cheque)</label>
+    <input type="text" name="referencia" maxlength="40">
+
+    <label>Banco</label>
+    <input type="text" name="banco" maxlength="60">
+
+    <button type="submit">Registrar pago</button>
+  </form>
+<% } %>
+
+<h2 style="margin: 20px 0 10px;">Pagos realizados</h2>
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Forma de pago</th>
+      <th>Monto</th>
+      <th>Referencia</th>
+      <th>Banco</th>
+      <th>Usuario</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% pagos.forEach((p) => { %>
+      <tr>
+        <td><%= p.FECHA %></td>
+        <td><%= p.FORMA %></td>
+        <td><%= cuenta.MONEDA_CODIGO %> <%= p.MONTO.toFixed(2) %></td>
+        <td><%= p.NUMERO_REFERENCIA || '' %></td>
+        <td><%= p.BANCO || '' %></td>
+        <td><%= p.CREADO_POR %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<p style="margin-top: 16px;"><a href="/cuentas-pagar">Volver a cuentas por pagar</a></p>
+
+<%- include('parciales/pie') %>
