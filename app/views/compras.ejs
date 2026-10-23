@@ -1,0 +1,38 @@
+<%- include('parciales/encabezado') %>
+
+<% if (permiso.PUEDE_CREAR === 'S') { %>
+  <p style="margin-bottom: 16px;"><a href="/compras/nueva" class="boton-secundario">Nueva compra</a></p>
+<% } %>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Documento</th>
+      <th>Fecha</th>
+      <th>Proveedor</th>
+      <th>Sucursal</th>
+      <th>Pago</th>
+      <th>Total</th>
+      <th>Estado</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% compras.forEach((c) => { %>
+      <tr>
+        <td><%= c.ID_COMPRA %></td>
+        <td><%= c.NUMERO_DOCUMENTO || '' %></td>
+        <td><%= c.FECHA %></td>
+        <td><%= c.PROVEEDOR %></td>
+        <td><%= c.SUCURSAL %></td>
+        <td><%= c.TIPO_PAGO %></td>
+        <td><%= c.MONEDA_CODIGO %> <%= c.TOTAL.toFixed(2) %></td>
+        <td><%= c.ESTADO %></td>
+        <td><a href="/compras/<%= c.ID_COMPRA %>">Ver</a></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

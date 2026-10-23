@@ -1,0 +1,38 @@
+<%- include('parciales/encabezado') %>
+
+<form method="GET" action="/inventario" class="en-linea" style="margin-bottom: 16px;">
+  <label>Sucursal</label>
+  <select name="sucursal">
+    <% sucursales.forEach((s) => { %>
+      <option value="<%= s.ID_SUCURSAL %>" <%= s.ID_SUCURSAL === idSucursal ? 'selected' : '' %>><%= s.NOMBRE %></option>
+    <% }) %>
+  </select>
+  <button type="submit">Ver</button>
+</form>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Producto</th>
+      <th>Categoria</th>
+      <th>Existencia</th>
+      <th>Minimo</th>
+      <th>Ultimo movimiento</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% existencias.forEach((e) => { %>
+      <tr>
+        <td><%= e.CODIGO %></td>
+        <td><%= e.NOMBRE %></td>
+        <td><%= e.CATEGORIA %></td>
+         <td><%= e.EXISTENCIA %> <%= e.EXISTENCIA <= e.EXISTENCIA_MINIMA ? '(bajo minimo)' : '' %></td>
+        <td><%= e.EXISTENCIA_MINIMA %></td>
+        <td><%= e.ULTIMO || '' %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

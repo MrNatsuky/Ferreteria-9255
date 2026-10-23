@@ -1,0 +1,30 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<form method="POST" action="/compras" class="formulario">
+  <h2>Datos de la compra</h2>
+
+  <label>Proveedor</label>
+  <select name="proveedor" required>
+    <% proveedores.forEach((p) => { %>
+      <option value="<%= p.ID_PROVEEDOR %>"><%= p.NIT %> - <%= p.NOMBRE %></option>
+    <% }) %>
+  </select>
+
+  <label>Numero de documento del proveedor</label>
+  <input type="text" name="documento" maxlength="30" required>
+
+  <label>Tipo de pago</label>
+  <select name="tipo">
+    <option value="CONTADO">Contado</option>
+    <option value="CREDITO">Credito</option>
+  </select>
+
+  <button type="submit">Crear compra</button>
+  <a href="/compras">Cancelar</a>
+</form>
+
+<%- include('parciales/pie') %>

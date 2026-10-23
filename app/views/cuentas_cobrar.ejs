@@ -1,0 +1,41 @@
+<%- include('parciales/encabezado') %>
+
+<form method="GET" action="/cuentas-cobrar" class="en-linea" style="margin-bottom: 16px;">
+  <label>Estado</label>
+  <select name="estado">
+    <option value="PENDIENTE" <%= estado === 'PENDIENTE' ? 'selected' : '' %>>Pendientes</option>
+    <option value="PAGADA" <%= estado === 'PAGADA' ? 'selected' : '' %>>Pagadas</option>
+  </select>
+  <button type="submit">Ver</button>
+</form>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>Factura</th>
+      <th>Cliente</th>
+      <th>Emision</th>
+      <th>Vencimiento</th>
+      <th>Monto</th>
+      <th>Saldo</th>
+      <th>Estado</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% cuentas.forEach((c) => { %>
+      <tr>
+        <td><%= c.FACTURA %></td>
+        <td><%= c.NIT %> - <%= c.CLIENTE %></td>
+        <td><%= c.EMISION %></td>
+        <td><%= c.VENCIMIENTO %> <%= c.VENCIDA === 'S' ? '(vencida)' : '' %></td>
+        <td><%= c.MONEDA_CODIGO %> <%= c.MONTO_TOTAL.toFixed(2) %></td>
+        <td><%= c.MONEDA_CODIGO %> <%= c.SALDO.toFixed(2) %></td>
+        <td><%= c.ESTADO %></td>
+        <td><a href="/cuentas-cobrar/<%= c.ID_CUENTA_COBRAR %>">Ver</a></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

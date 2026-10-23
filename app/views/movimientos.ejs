@@ -1,0 +1,61 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+<% if (exito) { %>
+  <p style="margin-bottom: 12px;"><strong><%= exito %></strong></p>
+<% } %>
+
+<% if (permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="/movimientos/traslado" class="formulario">
+    <h2>Trasladar producto a otra sucursal</h2>
+
+    <label>Producto</label>
+    <select name="producto" required>
+      <% productos.forEach((p) => { %>
+        <option value="<%= p.ID_PRODUCTO %>"><%= p.CODIGO %> - <%= p.NOMBRE %> (existencia: <%= p.EXISTENCIA %>)</option>
+      <% }) %>
+    </select>
+
+    <label>Sucursal destino</label>
+    <select name="destino" required>
+      <% sucursales.forEach((s) => { %>
+        <option value="<%= s.ID_SUCURSAL %>"><%= s.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Cantidad</label>
+    <input type="number" name="cantidad" step="0.01" min="0.01" required>
+
+    <button type="submit">Trasladar</button>
+  </form>
+<% } %>
+
+<h2 style="margin: 20px 0 10px;">Ultimos movimientos de la sucursal</h2>
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Tipo</th>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Referencia</th>
+      <th>Usuario</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% movimientos.forEach((m) => { %>
+      <tr>
+        <td><%= m.FECHA %></td>
+        <td><%= m.TIPO %></td>
+        <td><%= m.PRODUCTO %></td>
+        <td><%= m.OPERACION %><%= m.CANTIDAD %></td>
+        <td><%= m.DOCUMENTO_REFERENCIA || '' %></td>
+        <td><%= m.CREADO_POR %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

@@ -1,0 +1,75 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+<% if (exito) { %>
+  <p style="margin-bottom: 12px;"><strong><%= exito %></strong></p>
+<% } %>
+
+<% if (permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="/bajas" class="formulario" onsubmit="return confirm('Registrar la baja? El producto saldra del inventario.')">
+    <h2>Registrar baja</h2>
+
+    <label>Producto</label>
+    <select name="producto" required>
+      <% productos.forEach((p) => { %>
+        <option value="<%= p.ID_PRODUCTO %>"><%= p.CODIGO %> - <%= p.NOMBRE %> (existencia: <%= p.EXISTENCIA %>)</option>
+      <% }) %>
+    </select>
+
+    <label>Cantidad</label>
+    <input type="number" name="cantidad" step="0.01" min="0.01" required>
+
+    <label>Motivo</label>
+    <select name="motivo" required>
+      <option value="">-- Seleccione --</option>
+      <% motivos.forEach((m) => { %>
+        <option value="<%= m.ID_MOTIVO_BAJA %>"><%= m.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Autorizado por</label>
+    <select name="autoriza">
+      <option value="">-- Ninguno --</option>
+      <% empleados.forEach((e) => { %>
+        <option value="<%= e.ID_EMPLEADO %>"><%= e.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Observaciones</label>
+    <input type="text" name="observaciones" maxlength="300">
+
+    <button type="submit">Registrar baja</button>
+  </form>
+<% } %>
+
+<h2 style="margin: 20px 0 10px;">Bajas registradas</h2>
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Motivo</th>
+      <th>Autorizo</th>
+      <th>Observaciones</th>
+      <th>Usuario</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% bajas.forEach((b) => { %>
+      <tr>
+        <td><%= b.FECHA %></td>
+        <td><%= b.PRODUCTO %></td>
+        <td><%= b.CANTIDAD %></td>
+        <td><%= b.MOTIVO %></td>
+        <td><%= b.AUTORIZA || '' %></td>
+        <td><%= b.OBSERVACIONES || '' %></td>
+        <td><%= b.CREADO_POR %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

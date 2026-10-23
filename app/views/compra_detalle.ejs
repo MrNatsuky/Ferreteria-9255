@@ -1,0 +1,76 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<table class="tabla" style="max-width: 600px; margin-bottom: 20px;">
+  <tr><th>Compra</th><td><%= compra.ID_COMPRA %></td></tr>
+  <tr><th>Documento</th><td><%= compra.NUMERO_DOCUMENTO || '' %></td></tr>
+  <tr><th>Fecha</th><td><%= compra.FECHA %></td></tr>
+  <tr><th>Proveedor</th><td><%= compra.NIT %> - <%= compra.PROVEEDOR %></td></tr>
+  <tr><th>Sucursal</th><td><%= compra.SUCURSAL %></td></tr>
+  <tr><th>Registrada por</th><td><%= compra.EMPLEADO %></td></tr>
+  <tr><th>Tipo de pago</th><td><%= compra.TIPO_PAGO %></td></tr>
+  <tr><th>Estado</th><td><strong><%= compra.ESTADO %></strong> <%= compra.RECEPCION ? '(recibida el ' + compra.RECEPCION + ')' : '' %></td></tr>
+</table>
+
+<% if (compra.ESTADO === 'PENDIENTE' && permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="/compras/<%= compra.ID_COMPRA %>/productos" class="formulario">
+    <h2>Agregar producto</h2>
+
+    <label>Producto (costo sugerido en <%= compra.MONEDA_CODIGO %>)</label>
+    <select name="producto" required>
+      <% productos.forEach((p) => { %>
+        <option value="<%= p.ID_PRODUCTO %>"><%= p.CODIGO %> - <%= p.NOMBRE %> (<%= p.COSTO %>)</option>
+      <% }) %>
+    </select>
+
+    <label>Cantidad</label>
+    <input type="number" name="cantidad" step="0.01" min="0.01" required>
+
+    <label>Costo unitario (<%= compra.MONEDA_CODIGO %>)</label>
+    <input type="number" name="costo" step="0.01" min="0" required>
+
+    <button type="submit">Agregar</button>
+  </form>
+<% } %>
+
+<table class="tabla" style="margin-bottom: 20px;">
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Costo</th>
+      <th>Subtotal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% detalle.forEach((d) => { %>
+      <tr>
+        <td><%= d.CODIGO %></td>
+        <td><%= d.NOMBRE %></td>
+        <td><%= d.CANTIDAD %></td>
+        <td><%= d.COSTO_UNITARIO.toFixed(2) %></td>
+        <td><%= d.SUBTOTAL.toFixed(2) %></td>
+      </tr>
+    <% }) %>
+    <tr><th colspan="4">Subtotal</th><td><%= compra.MONEDA_CODIGO %> <%= compra.SUBTOTAL.toFixed(2) %></td></tr>
+    <tr><th colspan="4">Impuesto (<%= compra.PORCENTAJE_IMPUESTO %>%)</th><td><%= compra.MONEDA_CODIGO %> <%= compra.IMPUESTO.toFixed(2) %></td></tr>
+    <tr><th colspan="4">Total</th><td><strong><%= compra.MONEDA_CODIGO %> <%= compra.TOTAL.toFixed(2) %></strong></td></tr>
+  </tbody>
+</table>
+
+<% if (compra.ESTADO === 'PENDIENTE' && permiso.PUEDE_MODIFICAR === 'S') { %>
+  <form method="POST" action="/compras/<%= compra.ID_COMPRA %>/recibir" class="en-linea" onsubmit="return confirm('Confirmar que la mercaderia llego? Entrara al inventario.')">
+    <button type="submit">Recibir mercaderia</button>
+  </form>
+  <form method="POST" action="/compras/<%= compra.ID_COMPRA %>/cancelar" class="en-linea" onsubmit="return confirm('Cancelar la compra?')">
+    <button type="submit" class="boton-secundario">Cancelar compra</button>
+  </form>
+<% } %>
+
+<p style="margin-top: 16px;"><a href="/compras">Volver a compras</a></p>
+
+<%- include('parciales/pie') %> 
