@@ -1,0 +1,64 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<table class="tabla" style="max-width: 650px; margin-bottom: 20px;">
+  <tr><th>Envio</th><td><%= envio.ID_ENVIO %></td></tr>
+  <tr><th>Factura</th><td><a href="/facturas/<%= envio.ID_FACTURA %>"><%= envio.FACTURA %></a></td></tr>
+  <tr><th>Cliente</th><td><%= envio.CLIENTE %></td></tr>
+  <tr><th>Direccion</th><td><%= envio.DIRECCION_ENTREGA %></td></tr>
+  <tr><th>Sucursal</th><td><%= envio.SUCURSAL %></td></tr>
+  <tr><th>Responsable</th><td><%= envio.RESPONSABLE %></td></tr>
+  <tr><th>Vehiculo</th><td><%= envio.MARCA %> <%= envio.MODELO %></td></tr>
+  <tr><th>Placa</th><td><%= envio.TIPO_PLACA %>-<%= envio.PLACA %> (<%= envio.DESCRIPCION_PLACA %>)</td></tr>
+  <tr><th>Piloto</th><td><%= envio.PILOTO %> - licencia <%= envio.NUMERO_LICENCIA %></td></tr>
+  <tr><th>Programado</th><td><%= envio.PROGRAMADA %></td></tr>
+  <tr><th>Salida</th><td><%= envio.SALIDA || '' %></td></tr>
+  <tr><th>Entrega</th><td><%= envio.ENTREGA || '' %></td></tr>
+  <tr><th>Estado</th><td><strong><%= envio.ESTADO %></strong></td></tr>
+  <tr><th>Observaciones</th><td><%= envio.OBSERVACIONES || '' %></td></tr>
+</table>
+
+<h2 style="margin-bottom: 10px;">Detalle del envio</h2>
+<table class="tabla" style="margin-bottom: 20px;">
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Unidad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% detalle.forEach((d) => { %>
+      <tr>
+        <td><%= d.CODIGO %></td>
+        <td><%= d.NOMBRE %></td>
+        <td><%= d.CANTIDAD %></td>
+        <td><%= d.UNIDAD_MEDIDA %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<% if (permiso.PUEDE_MODIFICAR === 'S') { %>
+  <% if (envio.ESTADO === 'PROGRAMADO') { %>
+    <form method="POST" action="/envios/<%= envio.ID_ENVIO %>/salida" class="en-linea" onsubmit="return confirm('Registrar la salida del vehiculo?')">
+      <button type="submit">Registrar salida</button>
+    </form>
+    <form method="POST" action="/envios/<%= envio.ID_ENVIO %>/cancelar" class="en-linea" onsubmit="return confirm('Cancelar el envio?')">
+      <button type="submit" class="boton-secundario">Cancelar envio</button>
+    </form>
+  <% } %>
+  <% if (envio.ESTADO === 'EN_RUTA') { %>
+    <form method="POST" action="/envios/<%= envio.ID_ENVIO %>/entrega" class="en-linea" onsubmit="return confirm('Confirmar que el pedido fue entregado?')">
+      <button type="submit">Registrar entrega</button>
+    </form>
+  <% } %>
+<% } %>
+
+<p style="margin-top: 16px;"><a href="/envios">Volver a envios</a></p>
+
+<%- include('parciales/pie') %>

@@ -1,0 +1,94 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<% const accion = editar ? '/vehiculos/' + editar.ID_VEHICULO + '/editar' : '/vehiculos'; %>
+
+<% if (editar || permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="<%= accion %>" class="formulario">
+    <h2><%= editar ? 'Editar vehiculo' : 'Nuevo vehiculo' %></h2>
+
+    <label>Sucursal</label>
+    <select name="sucursal" required>
+      <% sucursales.forEach((s) => { %>
+        <option value="<%= s.ID_SUCURSAL %>" <%= editar && editar.ID_SUCURSAL === s.ID_SUCURSAL ? 'selected' : '' %>><%= s.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Tipo de placa</label>
+    <select name="tipo" required>
+      <% tipos.forEach((t) => { %>
+        <option value="<%= t.ID_TIPO_PLACA %>" <%= editar && editar.ID_TIPO_PLACA === t.ID_TIPO_PLACA ? 'selected' : '' %>><%= t.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Placa</label>
+    <input type="text" name="placa" maxlength="15" required value="<%= editar ? editar.PLACA : '' %>">
+
+    <label>Marca</label>
+    <input type="text" name="marca" maxlength="40" required value="<%= editar ? editar.MARCA : '' %>">
+
+    <label>Modelo</label>
+    <input type="text" name="modelo" maxlength="40" required value="<%= editar ? editar.MODELO : '' %>">
+
+    <label>Color</label>
+    <input type="text" name="color" maxlength="30" value="<%= editar ? editar.COLOR || '' : '' %>">
+
+    <label>Capacidad (toneladas)</label>
+    <input type="number" name="capacidad" step="0.01" min="0" value="<%= editar ? editar.CAPACIDAD_TONELADAS || '' : '' %>">
+
+    <label>Estado</label>
+    <select name="estado">
+      <% ['DISPONIBLE', 'EN_RUTA', 'MANTENIMIENTO'].forEach((e) => { %>
+        <option value="<%= e %>" <%= editar && editar.ESTADO === e ? 'selected' : '' %>><%= e %></option>
+      <% }) %>
+    </select>
+
+    <button type="submit">Guardar</button>
+    <% if (editar) { %>
+      <a href="/vehiculos">Cancelar</a>
+    <% } %>
+  </form>
+<% } %>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>Sucursal</th>
+      <th>Placa</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Color</th>
+      <th>Capacidad</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% vehiculos.forEach((v) => { %>
+      <tr>
+        <td><%= v.SUCURSAL %></td>
+        <td><%= v.TIPO_PLACA %>-<%= v.PLACA %></td>
+        <td><%= v.MARCA %></td>
+        <td><%= v.MODELO %></td>
+        <td><%= v.COLOR || '' %></td>
+        <td><%= v.CAPACIDAD_TONELADAS || '' %></td>
+        <td><%= v.ESTADO %></td>
+        <td>
+          <% if (permiso.PUEDE_MODIFICAR === 'S') { %>
+            <a href="/vehiculos?editar=<%= v.ID_VEHICULO %>">Editar</a>
+          <% } %>
+          <% if (permiso.PUEDE_ELIMINAR === 'S') { %>
+            <form method="POST" action="/vehiculos/<%= v.ID_VEHICULO %>/eliminar" class="en-linea" onsubmit="return confirm('Eliminar este vehiculo?')">
+              <button type="submit">Eliminar</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

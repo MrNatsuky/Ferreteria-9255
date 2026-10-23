@@ -20,6 +20,10 @@ const rutasInventario = require('./rutas/inventario');
 const rutasCuentasCobrar = require('./rutas/cuentas_cobrar');
 const rutasCompras = require('./rutas/compras');
 const rutasCuentasPagar = require('./rutas/cuentas_pagar');
+const rutasTiposPlaca = require('./rutas/tipos_placa');
+const rutasVehiculos = require('./rutas/vehiculos');
+const rutasPilotos = require('./rutas/pilotos');
+const rutasEnvios = require('./rutas/envios');
 const { requiereSesion, cargarMenu } = require('./middlewares/seguridad');
 
 const app = express();
@@ -56,6 +60,10 @@ app.use(rutasInventario);
 app.use(rutasCuentasCobrar);
 app.use(rutasCompras);
 app.use(rutasCuentasPagar);
+app.use(rutasTiposPlaca);
+app.use(rutasVehiculos);
+app.use(rutasPilotos);
+app.use(rutasEnvios);
 
 app.use((req, res) => {
   res.status(404).render('mensaje', {

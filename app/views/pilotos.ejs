@@ -1,0 +1,79 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<% const accion = editar ? '/pilotos/' + editar.ID_PILOTO + '/editar' : '/pilotos'; %>
+
+<% if (editar || permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="<%= accion %>" class="formulario">
+    <h2><%= editar ? 'Editar piloto' : 'Nuevo piloto' %></h2>
+
+    <label>Empleado</label>
+    <select name="empleado" required>
+      <% empleados.forEach((e) => { %>
+        <option value="<%= e.ID_EMPLEADO %>" <%= editar && editar.ID_EMPLEADO === e.ID_EMPLEADO ? 'selected' : '' %>><%= e.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Numero de licencia</label>
+    <input type="text" name="licencia" maxlength="25" required value="<%= editar ? editar.NUMERO_LICENCIA : '' %>">
+
+    <label>Tipo de licencia</label>
+    <input type="text" name="tipo" maxlength="5" required value="<%= editar ? editar.TIPO_LICENCIA : '' %>">
+
+    <label>Vencimiento de la licencia</label>
+    <input type="date" name="vencimiento" required value="<%= editar ? editar.VENCIMIENTO : '' %>">
+
+    <label>Estado</label>
+    <select name="estado">
+      <% ['DISPONIBLE', 'EN_RUTA'].forEach((e) => { %>
+        <option value="<%= e %>" <%= editar && editar.ESTADO === e ? 'selected' : '' %>><%= e %></option>
+      <% }) %>
+    </select>
+
+    <button type="submit">Guardar</button>
+    <% if (editar) { %>
+      <a href="/pilotos">Cancelar</a>
+    <% } %>
+  </form>
+<% } %>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>Piloto</th>
+      <th>Sucursal</th>
+      <th>Licencia</th>
+      <th>Tipo</th>
+      <th>Vence</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% pilotos.forEach((p) => { %>
+      <tr>
+        <td><%= p.NOMBRE %></td>
+        <td><%= p.SUCURSAL %></td>
+        <td><%= p.NUMERO_LICENCIA %></td>
+        <td><%= p.TIPO_LICENCIA %></td>
+        <td><%= p.VENCIMIENTO %> <%= p.VENCIDA === 'S' ? '(vencida)' : '' %></td>
+        <td><%= p.ESTADO %></td>
+        <td>
+          <% if (permiso.PUEDE_MODIFICAR === 'S') { %>
+            <a href="/pilotos?editar=<%= p.ID_PILOTO %>">Editar</a>
+          <% } %>
+          <% if (permiso.PUEDE_ELIMINAR === 'S') { %>
+            <form method="POST" action="/pilotos/<%= p.ID_PILOTO %>/eliminar" class="en-linea" onsubmit="return confirm('Eliminar este piloto?')">
+              <button type="submit">Eliminar</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

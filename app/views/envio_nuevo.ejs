@@ -1,0 +1,48 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<% if (facturas.length === 0 || vehiculos.length === 0 || pilotos.length === 0) { %>
+  <div class="alerta">
+    Para programar un envio se necesita al menos una factura emitida con entrega de la empresa,
+    un vehiculo disponible y un piloto disponible en su sucursal.
+  </div>
+<% } %>
+
+<form method="POST" action="/envios" class="formulario">
+  <h2>Programar envio</h2>
+
+  <label>Factura</label>
+  <select name="factura" required>
+    <% facturas.forEach((f) => { %>
+      <option value="<%= f.ID_FACTURA %>"><%= f.FACTURA %> - <%= f.CLIENTE %> (<%= f.DIRECCION_ENTREGA %>)</option>
+    <% }) %>
+  </select>
+
+  <label>Vehiculo</label>
+  <select name="vehiculo" required>
+    <% vehiculos.forEach((v) => { %>
+      <option value="<%= v.ID_VEHICULO %>"><%= v.NOMBRE %></option>
+    <% }) %>
+  </select>
+
+  <label>Piloto</label>
+  <select name="piloto" required>
+    <% pilotos.forEach((p) => { %>
+      <option value="<%= p.ID_PILOTO %>"><%= p.NOMBRE %></option>
+    <% }) %>
+  </select>
+
+  <label>Fecha programada</label>
+  <input type="date" name="fecha" required>
+
+  <label>Observaciones</label>
+  <input type="text" name="observaciones" maxlength="300">
+
+  <button type="submit">Programar</button>
+  <a href="/envios">Cancelar</a>
+</form>
+
+<%- include('parciales/pie') %>

@@ -1,0 +1,65 @@
+<%- include('parciales/encabezado') %>
+
+<% if (error) { %>
+  <div class="alerta"><%= error %></div>
+<% } %>
+
+<% const accion = editar ? '/tipos-placa/' + editar.ID_TIPO_PLACA + '/editar' : '/tipos-placa'; %>
+
+<% if (editar || permiso.PUEDE_CREAR === 'S') { %>
+  <form method="POST" action="<%= accion %>" class="formulario">
+    <h2><%= editar ? 'Editar tipo de placa' : 'Nuevo tipo de placa' %></h2>
+
+    <label>Pais</label>
+    <select name="pais" required>
+      <% paises.forEach((p) => { %>
+        <option value="<%= p.ID_PAIS %>" <%= editar && editar.ID_PAIS === p.ID_PAIS ? 'selected' : '' %>><%= p.NOMBRE %></option>
+      <% }) %>
+    </select>
+
+    <label>Codigo</label>
+    <input type="text" name="codigo" maxlength="5" required value="<%= editar ? editar.CODIGO : '' %>">
+
+    <label>Descripcion</label>
+    <input type="text" name="descripcion" maxlength="80" required value="<%= editar ? editar.DESCRIPCION : '' %>">
+
+    <button type="submit">Guardar</button>
+    <% if (editar) { %>
+      <a href="/tipos-placa">Cancelar</a>
+    <% } %>
+  </form>
+<% } %>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Pais</th>
+      <th>Codigo</th>
+      <th>Descripcion</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% tipos.forEach((t) => { %>
+      <tr>
+        <td><%= t.ID_TIPO_PLACA %></td>
+        <td><%= t.PAIS %></td>
+        <td><%= t.CODIGO %></td>
+        <td><%= t.DESCRIPCION %></td>
+        <td>
+          <% if (permiso.PUEDE_MODIFICAR === 'S') { %>
+            <a href="/tipos-placa?editar=<%= t.ID_TIPO_PLACA %>">Editar</a>
+          <% } %>
+          <% if (permiso.PUEDE_ELIMINAR === 'S') { %>
+            <form method="POST" action="/tipos-placa/<%= t.ID_TIPO_PLACA %>/eliminar" class="en-linea" onsubmit="return confirm('Eliminar este tipo de placa?')">
+              <button type="submit">Eliminar</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>

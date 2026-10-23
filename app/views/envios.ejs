@@ -1,0 +1,49 @@
+<%- include('parciales/encabezado') %>
+
+<div class="en-linea" style="margin-bottom: 16px;">
+  <form method="GET" action="/envios" class="en-linea">
+    <label>Estado</label>
+    <select name="estado">
+      <% ['PROGRAMADO', 'EN_RUTA', 'ENTREGADO', 'CANCELADO'].forEach((e) => { %>
+        <option value="<%= e %>" <%= estado === e ? 'selected' : '' %>><%= e %></option>
+      <% }) %>
+    </select>
+    <button type="submit">Ver</button>
+  </form>
+  <% if (permiso.PUEDE_CREAR === 'S') { %>
+    <a href="/envios/nuevo" class="boton-secundario">Nuevo envio</a>
+  <% } %>
+</div>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Factura</th>
+      <th>Cliente</th>
+      <th>Sucursal</th>
+      <th>Programado</th>
+      <th>Vehiculo</th>
+      <th>Piloto</th>
+      <th>Estado</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% envios.forEach((e) => { %>
+      <tr>
+        <td><%= e.ID_ENVIO %></td>
+        <td><%= e.FACTURA %></td>
+        <td><%= e.CLIENTE %></td>
+        <td><%= e.SUCURSAL %></td>
+        <td><%= e.PROGRAMADA %></td>
+        <td><%= e.PLACA %></td>
+        <td><%= e.PILOTO %></td>
+        <td><%= e.ESTADO %></td>
+        <td><a href="/envios/<%= e.ID_ENVIO %>">Ver</a></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('parciales/pie') %>
